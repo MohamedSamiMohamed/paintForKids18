@@ -37,7 +37,7 @@ int main()
 
 	GfxInfo gfxInfo;//to be used with draw function of the class Ouput
 	Point P1, P2;
-	/*
+	
 	/// 2.1- Rectangle Test ///
 	/// =================== 
 	pOut->PrintMessage("Drawing a Rectangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
@@ -80,7 +80,7 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawArea();
-	*/
+	
 	/// 2.2- Line Test ///
 	/// ============== 
 	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");
@@ -141,7 +141,10 @@ int main()
 	// 1- Read a string from the user on the status bar
 	// 2- After reading the stirng clear the status bar
 	// 3- print on the status bar "You Entered" then print the string
-
+	string inputString = pIn->GetSrting(pOut); //Hassanin: type whatever you want then press enter 
+	pOut->PrintMessage("");					   //to get out of the function
+	pOut->PrintMessage("You Entered: " + inputString);
+	
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawArea();
 
