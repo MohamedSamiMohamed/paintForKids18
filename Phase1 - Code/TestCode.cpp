@@ -37,7 +37,7 @@ int main()
 
 	GfxInfo gfxInfo;//to be used with draw function of the class Ouput
 	Point P1, P2;
-
+	/*
 	/// 2.1- Rectangle Test ///
 	/// =================== 
 	pOut->PrintMessage("Drawing a Rectangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
@@ -57,8 +57,7 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted non-filled, Click to Highlight");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->DrawRect(P1, P2, gfxInfo, true);
-
-
+	
 	// 2.1.3 - Drawing a filled rectangle
 	pOut->PrintMessage("Drawing a Rectangle ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
@@ -81,13 +80,16 @@ int main()
 	pOut->PrintMessage("Drawing a Rectangle Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawArea();
-
+	*/
 	/// 2.2- Line Test ///
 	/// ============== 
 	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
-
-	///TODO: Add code to draw Line, Normal and Highlighted
+	
+	pOut->PrintMessage("Drawing a Rectangle ==> filled,  Click two points");
+	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
+	pOut->DrawLine(P1, P2, gfxInfo, true);
 
 	pOut->PrintMessage("Drawing a Line Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
