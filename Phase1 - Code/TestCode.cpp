@@ -122,6 +122,46 @@ int main()
 	pOut->PrintMessage("Drawing an Ellipse, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
+	//============================================M.A=================================================================//
+	pOut->PrintMessage("Drawing a Rhombus ==> non-filled, click one point");                                          
+	pIn->GetPointClicked(P1.x, P1.y);                                                                                 
+	//M.A: Rhombus info                                                                                               
+	gfxInfo.BorderWdth = 30;                                                                                          
+	gfxInfo.DrawClr = RED;                                                                                         
+	gfxInfo.isFilled = false;                                                                                         
+	pOut->DrawRhom(P1, gfxInfo, false);                                                                               
+	//========================================M.A=====================================================================//
+	//2.4.2- Drawing nonfilled/Highlighted Rhombus    M.A
+	pOut->PrintMessage("Drawing a Rhombus ==> Highlighted nonfilled, Click to highlight");
+	pIn->GetPointClicked(x,y);                //M.A: Takes any x and y  so as to highlight rhombus at same x and y of P1
+	pOut->DrawRhom(P1, gfxInfo, true);        //M.A: Selected becomes True
+	//==============================================M.A===============================================================//
+	//2.4.3- Drawing filled Rhombus
+	pOut->PrintMessage("Drawing a Rhombus ==> filled, Click one point");
+	pIn->GetPointClicked(P1.x, P1.y);
+	//M.A: Rhombus info                                                                                               
+	gfxInfo.BorderWdth = 30;                                                                                          
+	gfxInfo.DrawClr = RED;                                                                                         
+	gfxInfo.isFilled = true;
+	gfxInfo.FillClr = RED;
+	pOut->DrawRhom(P1, gfxInfo, false);
+	//2.4.4- Drawing filled/Highlighted Rhombus  M.A
+	pOut->PrintMessage("Drawing a Rhombus ==> Highlighted filled, Click to highlight");
+	pIn->GetPointClicked(x, y);
+	pOut->DrawRhom(P1, gfxInfo, true);
+	//=======================================================M.A=======================================================//
+	
+	pOut->PrintMessage("Drawing a Rhombus Test ==> OK,  Click anywhere to continue");
+	pIn->GetPointClicked(x,y);	//Wait for any click
+	pOut->ClearDrawArea();
+	
+	/// 2.5- Rhombus Test /// //================M.A===============//
+	/// =================== 
+	pOut->PrintMessage("Drawing an Ellipse, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
+	pIn->GetPointClicked(x,y);	//Wait for any click
+
+	///TODO: Add code to draw Ellipse in all possible states
+
 	///TODO: Add code to draw Ellipse in all possible states
 
 	pOut->PrintMessage("Drawing a Ellipse Test ==> OK,  Click anywhere to continue");

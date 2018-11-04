@@ -161,6 +161,51 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
 	
 }
+
+//============================================================================================================//
+void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /*M.A : The function takes P1 from the user click then derives
+																			   two arrays one foe x vertices and the other for y vertices from the 
+																			   center point (x,y+50) (x+40,y) (x,y-50) (x-40,y) then if sends the two arrays
+																			   to drawpolygon function and 4 which is the number of vertices and the style
+																			   filled or nonfilled*/
+{
+
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor;
+	else
+		DrawingClr = UI.DrawColor;  //setting draw colour
+
+	 int* px = new int [4];
+	 int* py = new int [4];              
+
+	 px[0] = P1.x;
+	 px[1] = P1.x + 80;
+	 px[2] = P1.x;
+	 px[3] = P1.x - 80;                              //M.A :setting an array of x values for vertices
+
+	 py[0] = P1.y + 100;
+	 py[1] = P1.y;
+	 py[2] = P1.y - 100;
+	 py[3] = P1.y;                                   //M.A :setting an array of y values for vertices
+
+	 pWind->SetPen(DrawingClr, 1);
+	 
+	 drawstyle style;
+	 if (RhomGfxInfo.isFilled)
+	 {
+		 style = FILLED;
+		 pWind->SetBrush(RhomGfxInfo.FillClr);
+	 }
+	 else
+		 style = FRAME;                              //M.A :identify filled or frame
+
+	 pWind->DrawPolygon(px, py, 4, style);       //M.A :where px and py are arrays of vertices derived from center point
+	 
+	 delete[]px;
+	 delete[]py;                                   
+}
+//==============================================================================================//
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) const {  //Draw a line
 	color DrawingClr;
 	if (selected)
