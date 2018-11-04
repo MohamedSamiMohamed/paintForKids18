@@ -15,7 +15,7 @@ int main()
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
-
+	/*
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 1:	
 	//			Create The FULL Tool bar, the drawing area and the status bar	
@@ -36,7 +36,7 @@ int main()
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 	GfxInfo gfxInfo;//to be used with draw function of the class Ouput
-	Point P1, P2;
+	Point P1, P2,P3;
 	
 	/// 2.1- Rectangle Test ///
 	/// =================== 
@@ -86,25 +86,67 @@ int main()
 	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	
-	pOut->PrintMessage("Drawing a Rectangle ==> filled,  Click two points");
+	pOut->PrintMessage("Drawing a Line ==> filled,  Click two points");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 	pOut->DrawLine(P1, P2, gfxInfo, true);
 
+	pOut->PrintMessage("Drawing a Line, normal and non-Highlighted, Click to continue");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
+	pOut->PrintMessage("Drawing a Line ==> filled,  Click two points");
+	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
+	pOut->DrawLine(P1, P2, gfxInfo, false);
+
 	pOut->PrintMessage("Drawing a Line Test ==> OK,  Click anywhere to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawArea();
-
-	/// 2.3- Triangle Test ///
+ 
+	/// 2.3- Triangle Test ///   //****MS****
 	/// =================== 
 	pOut->PrintMessage("Drawing a Triangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	///TODO: Add code to draw Triangle in all possible states
+
+								// 2.3.1 - Drawing non-filled Triangle
+	pOut->PrintMessage("Drawing a Triangle ==> non-filled,  Click three points");
+	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
+	pIn->GetPointClicked(P3.x, P3.y);
+
+	gfxInfo.BorderWdth = 5;
+	gfxInfo.DrawClr = BLACK;	//any color for border
+	gfxInfo.isFilled = false;	//Figure is NOT filled
+	pOut->DrawTri(P1, P2, P3, gfxInfo, false);
+
+	// 2.3.2 - Drawing highlighted non-filled Triangle
+	pOut->PrintMessage("Drawing a Triangle ==> Highlighted non-filled, Click to Highlight");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawTri(P1, P2, P3, gfxInfo, true);
+
+	// 2.3.3 - Drawing a filled Triangle
+	pOut->PrintMessage("Drawing a Triangle ==> filled,  Click three points");
+	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
+	pIn->GetPointClicked(P3.x, P3.y);
+
+	gfxInfo.BorderWdth = 6;
+	gfxInfo.DrawClr = BLUE;	//any color for border
+	gfxInfo.FillClr = GREEN;//any color for filling
+	gfxInfo.isFilled = true;//Figure is filled
+	pOut->DrawTri(P1, P2, P3, gfxInfo, false);
+
+	// 2.3.4 - Drawing a highlighted filled Triangle
+	pOut->PrintMessage("Drawing a Rectangle ==> Highlighted filled, Click to Highlight");
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawTri(P1, P2, P3, gfxInfo, true);
+
 
 	pOut->PrintMessage("Drawing a Triangle Test ==> OK,  Click anywhere to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->ClearDrawArea();
+
 	
 	/// 2.4- Rhombus Test ///
 	/// =================== 
@@ -155,7 +197,7 @@ int main()
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawArea();
 	
-	/// 2.5- Rhombus Test /// //================M.A===============//
+	/// 2.6- Ellipse Test /// //================M.A===============//
 	/// =================== 
 	pOut->PrintMessage("Drawing an Ellipse, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -193,10 +235,11 @@ int main()
 	//			Input Class : Check for the user action
 	///////////////////////////////////////////////////////////////////////////////////
 	pOut->PrintMessage("TEST4: Testing Input ability to detect User Action, click anywhere");
-
+	*/
 	ActionType ActType;
 	
 	///TODO:  
+	
 	//You must add a case for each action (both Draw mode and Play mode actions)
 	//Add cases for the missing actions below
 	do
@@ -247,13 +290,20 @@ int main()
 
 		case TO_DRAW:
 				pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
+				pOut->ClearToolBar();
 				pOut->CreateDrawToolBar();
 				break;
 
 		case TO_PLAY:
 				pOut->PrintMessage("Action: Switch to Play Mode, creating Design tool bar");
+				pOut->ClearToolBar();
 				pOut->CreatePlayToolBar();
 				break;
+		case SELECT_BY_TYPE:
+			pOut->PrintMessage("Action : a click on select by type, Click anywhere ");
+			break;
+		case SELECT_BY_COLOUR:
+			pOut->PrintMessage("Action: a click on select by colour ,click anywhere ");
 
 
 		case EXIT:				

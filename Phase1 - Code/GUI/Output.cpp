@@ -53,6 +53,26 @@ window* Output::CreateWind(int w, int h, int x, int y) const
 	pW->DrawRectangle(0, UI.ToolBarHeight, w, h);	
 	return pW;
 }
+//////////////////////////////////////////////////////////////////////////////////////////*****BH****
+void Output::ClearToolBar() const
+{
+	pWind->SetPen(UI.BkGrndColor, 1);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0,0, UI.width, UI.StatusBarHeight);
+	
+}
+////////////////////////////////////////////////////////////////////////////////////////****BH*****
+void Output :: TO_PLAY() const {
+	ClearToolBar();
+	CreatePlayToolBar();
+
+}
+////////////////////////////////////////////////////////////////////////////////////////****MS*****
+void Output:: TO_DRAW()const{
+  ClearToolBar();
+  CreateDrawToolBar();
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::CreateStatusBar() const
 {
@@ -83,6 +103,10 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_RECT] = "images\\MenuItems\\Menu_Rect.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	MenuItemImages[ITM_LINE] = "images\\MenuItems\\Menu_Line.jpg";
+	MenuItemImages[ITM_TRI] = "images\\MenuItems\\ITM_TRI.jpg";
+	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\ITM_PLAY.jpg";
+
+
 	//TODO: Prepare images for each menu item and add it to the list
 
 	//Draw menu item one image at a time
@@ -98,11 +122,24 @@ void Output::CreateDrawToolBar() const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
-void Output::CreatePlayToolBar() const
+void Output::CreatePlayToolBar() const   //****MS****
 {
 	UI.InterfaceMode = MODE_PLAY;
 	///TODO: write code to create Play mode menu
+	string MenuItemImages[PLAY_ITM_COUNT];
+	MenuItemImages[ITM_EXIT2] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_FIGTYPE] = "images\\MenuItems\\ITM_FIGTYPE.jpg";
+	MenuItemImages[ITM_FIGCOL] = "images\\MenuItems\\ITM_FIGCOL.jpg";
+	MenuItemImages[ITM_DRAW] = "images\\MenuItems\\ITM_DRAW.jpg";
+	//Draw menu item one image at a time
+	for (int i = 0; i < PLAY_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+	//Draw a line under the toolbar	
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
+	
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::ClearDrawArea() const
@@ -220,6 +257,24 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) c
 	pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
 }
 
+void Output::DrawTri(Point p1,Point p2,Point p3, GfxInfo TriGfxInfo, bool selected)const  //****MS*****
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr=UI.HighlightColor;
+	else 
+		DrawingClr=TriGfxInfo.DrawClr;
+	pWind->SetPen(DrawingClr,1);
+	drawstyle style;
+	if(TriGfxInfo.isFilled)
+	{
+	style =FILLED;
+	pWind->SetBrush(TriGfxInfo.FillClr);
+	}
+	else 
+		style =FRAME;
+	pWind->DrawTriangle(p1.x,p1.y,p2.x,p2.y,p3.x,p3.y,style);
+	}
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()
 {

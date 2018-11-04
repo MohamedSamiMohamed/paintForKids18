@@ -24,7 +24,9 @@ enum ActionType //The actions supported (you can add more if needed)
 	EMPTY,			//A click on empty place in the toolbar
 
 	TO_DRAW,		//Switch interface to Draw mode
-	TO_PLAY			//Switch interface to Play mode
+	TO_PLAY,			//Switch interface to Play mode
+	SELECT_BY_TYPE, //play by type  ****MS****
+	SELECT_BY_COLOUR //play by colour ***MS****
 
 	///TODO: Add more action types (if needed)
 };
