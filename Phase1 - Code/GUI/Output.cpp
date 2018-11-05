@@ -6,7 +6,7 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1250;
+	UI.width = 1200;
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
@@ -14,7 +14,7 @@ Output::Output()
 	
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 80;
+	UI.MenuItemWidth = 50;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -100,11 +100,29 @@ void Output::CreateDrawToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[DRAW_ITM_COUNT];
+	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\ITM_PLAY.jpg";
 	MenuItemImages[ITM_RECT] = "images\\MenuItems\\Menu_Rect.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 	MenuItemImages[ITM_LINE] = "images\\MenuItems\\Menu_Line.jpg";
-	MenuItemImages[ITM_TRI] = "images\\MenuItems\\ITM_TRI.jpg";
-	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\ITM_PLAY.jpg";
+	MenuItemImages[ITM_RHOMBUS] = "images\\MenuItems\\Menu_Rhom.jpg";
+	MenuItemImages[ITM_ELLIPSE] = "images\\MenuItems\\Menu_ELLIPSE.jpg";
+	MenuItemImages[ITM_TRI] = "images\\MenuItems\\Menu_Trian.jpg";
+	MenuItemImages[ITM_SELECT] = "images\\MenuItems\\Select.jpg";
+	MenuItemImages[ITM_DRAW_CLR] = "images\\MenuItems\\DRAW_CLR.jpg";
+	MenuItemImages[ITM_FILL_CLR] = "images\\MenuItems\\FILL_CLR.jpg";
+	MenuItemImages[ITM_RED] = "images\\MenuItems\\Red.jpg";
+	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Blue.jpg";
+	MenuItemImages[ITM_WHITE] = "images\\MenuItems\\White.jpg";
+	MenuItemImages[ITM_GREEN] = "images\\MenuItems\\Green.jpg";
+	MenuItemImages[ITM_BLACK] = "images\\MenuItems\\Black.jpg";
+	MenuItemImages[ITM_COPY] = "images\\MenuItems\\Copy.jpg";
+	MenuItemImages[ITM_CUT] = "images\\MenuItems\\Cut.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\MenuItems\\Paste.jpg";
+	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Delete.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Save.jpg";
+	MenuItemImages[ITM_SAVE_BY_TYPE] = "images\\MenuItems\\SAVE_BY_TYPE.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Load.jpg";
+
 
 
 	//TODO: Prepare images for each menu item and add it to the list

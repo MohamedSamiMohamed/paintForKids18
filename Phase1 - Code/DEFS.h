@@ -11,8 +11,17 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_TRI,		//Draw Triangle
 	DRAW_RHOMBUS,		//Draw Rhombus
 	DRAW_ELLIPSE,		//Draw Ellipse
+	SELECT,           //=========================M.A : TO SELECT A FIGURE
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
+	RED_CLR,        //============================M.A : Choosing a colour
+	BLUE_CLR,
+	WHITE_CLR,
+	GREEN_CLR,
+	BLACK_CLR,
+	CPY,            //===============M.A:COPY A FIGURE AFTER SELECTING
+	CUT,             //================M.A:CUT A FIGURE AFTER SELECTING
+	PASTE,           //================M.A: PASTE A FIGURE AFTER SELECTING
 	DEL,			//Delete a figure(s)
 	SAVE,			//Save the whole graph to a file
 	SAVE_BY_TYPE,	//Save the all the figures that have a specific type
@@ -25,8 +34,11 @@ enum ActionType //The actions supported (you can add more if needed)
 
 	TO_DRAW,		//Switch interface to Draw mode
 	TO_PLAY,			//Switch interface to Play mode
-	SELECT_BY_TYPE, //play by type  ****MS****
-	SELECT_BY_COLOUR //play by colour ***MS****
+	SELECT_BY_TYPE,
+	SELECT_BY_COLOUR
+
+	///TODO: Add more action types (if needed)
+
 
 	///TODO: Add more action types (if needed)
 };
