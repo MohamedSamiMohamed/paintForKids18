@@ -224,41 +224,57 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 																			   to drawpolygon function and 4 which is the number of vertices and the style
 																			   filled or nonfilled*/
 {
-
-	color DrawingClr;
-	if (selected)
-		DrawingClr = UI.HighlightColor;
+	if (P1.y <= UI.ToolBarHeight || (P1.y > UI.height - UI.StatusBarHeight))
+	{
+		Point PWait;
+		PrintMessage("Invalid center !");
+		pWind->WaitMouseClick(PWait.x,PWait.y);
+	}
 	else
-		DrawingClr = UI.DrawColor;  //setting draw colour
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor;
+		else
+			DrawingClr = UI.DrawColor;  //setting draw colour
 
-	 int* px = new int [4];
-	 int* py = new int [4];              
 
-	 px[0] = P1.x;
-	 px[1] = P1.x + 80;
-	 px[2] = P1.x;
-	 px[3] = P1.x - 80;                              //M.A :setting an array of x values for vertices
+		if (P1.y < UI.ToolBarHeight + 100)
+		{
+			double AboveToolbar = 100 - (P1.y - UI.ToolBarHeight);
+			P1.y += AboveToolbar;
+		}
 
-	 py[0] = P1.y + 100;
-	 py[1] = P1.y;
-	 py[2] = P1.y - 100;
-	 py[3] = P1.y;                                   //M.A :setting an array of y values for vertices
+		int* px = new int[4];
+		int* py = new int[4];
 
-	 pWind->SetPen(DrawingClr, 1);
-	 
-	 drawstyle style;
-	 if (RhomGfxInfo.isFilled)
-	 {
-		 style = FILLED;
-		 pWind->SetBrush(RhomGfxInfo.FillClr);
-	 }
-	 else
-		 style = FRAME;                              //M.A :identify filled or frame
+		px[0] = P1.x;
+		px[1] = P1.x + 80;
+		px[2] = P1.x;
+		px[3] = P1.x - 80;                              //M.A :setting an array of x values for vertices
 
-	 pWind->DrawPolygon(px, py, 4, style);       //M.A :where px and py are arrays of vertices derived from center point
-	 
-	 delete[]px;
-	 delete[]py;                                   
+		py[0] = P1.y + 100;
+		py[1] = P1.y;
+		py[2] = P1.y - 100;
+		py[3] = P1.y;                                   //M.A :setting an array of y values for vertices
+
+		pWind->SetPen(DrawingClr, 1);
+
+		drawstyle style;
+		if (RhomGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RhomGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;                              //M.A :identify filled or frame
+
+		pWind->DrawPolygon(px, py, 4, style);
+		//M.A :where px and py are arrays of vertices derived from center point
+
+		delete[]px;
+		delete[]py;
+	}
 }
 //==============================================================================================//
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) const {  //Draw a line
@@ -272,6 +288,10 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) c
 	drawstyle style;
 	style = FRAME;
 
+	
+	
+
+	
 	pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
 }
 
