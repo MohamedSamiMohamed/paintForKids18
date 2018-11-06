@@ -196,7 +196,9 @@ int Output::getCrntPenWidth() const		//get current pen width
 void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 {
 	if (p1.y >UI.height - UI.StatusBarHeight)
-	{
+	{		Point PWait;
+		PrintMessage("Invalid !");
+		pWind->WaitMouseClick(PWait.x, PWait.y);
 		return;
 	}
 	if (p1.y + 20 >UI.height - UI.StatusBarHeight)
@@ -222,7 +224,9 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 	}
 	////////////
 	if (p1.y <UI.ToolBarHeight)
-	{
+	{		Point PWait;
+		PrintMessage("Invalid !");
+		pWind->WaitMouseClick(PWait.x, PWait.y);
 		return;
 	}
 	if (p1.y - 20 <UI.ToolBarHeight)
@@ -269,25 +273,33 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 }
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
-	color DrawingClr;
-	if(selected)	
-		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
-	else			
-		DrawingClr = RectGfxInfo.DrawClr;
-	
-	pWind->SetPen(DrawingClr,1);
-	drawstyle style;
-	if (RectGfxInfo.isFilled)	
+	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight)
 	{
-		style = FILLED;		
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		Point PWait;
+		PrintMessage("Invalid !");
+		pWind->WaitMouseClick(PWait.x, PWait.y);
 	}
-	else	
-		style = FRAME;
+	else
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+		else
+			DrawingClr = RectGfxInfo.DrawClr;
 
-	
-	pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
-	
+		pWind->SetPen(DrawingClr, 1);
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+
+		pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
+	}
 }
 
 //============================================================================================================//
@@ -351,40 +363,59 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 }
 //==============================================================================================//
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) const {  //Draw a line
-	color DrawingClr;
-	if (selected)
-		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	
+	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight)
+	{
+		Point PWait;
+		PrintMessage("Invalid !");
+		pWind->WaitMouseClick(PWait.x, PWait.y);
+	}
 	else
-		DrawingClr = LineGfxInfo.DrawClr;
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+		else
+			DrawingClr = LineGfxInfo.DrawClr;
 
-	pWind->SetPen(DrawingClr, 5);
-	drawstyle style;
-	style = FRAME;
+		pWind->SetPen(DrawingClr, 5);
+		drawstyle style;
+		style = FRAME;
 
-	
-	
 
-	
-	pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
+
+
+
+		pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
+	}
 }
 
 void Output::DrawTri(Point p1,Point p2,Point p3, GfxInfo TriGfxInfo, bool selected)const  //****MS*****
 {
-	color DrawingClr;
-	if (selected)
-		DrawingClr=UI.HighlightColor;
-	else 
-		DrawingClr=TriGfxInfo.DrawClr;
-	pWind->SetPen(DrawingClr,1);
-	drawstyle style;
-	if(TriGfxInfo.isFilled)
+	if (p1.y <= UI.ToolBarHeight || p2.y <= UI.ToolBarHeight || p3.y <= UI.ToolBarHeight)
 	{
-	style =FILLED;
-	pWind->SetBrush(TriGfxInfo.FillClr);
+		Point PWait;
+		PrintMessage("Invalid !");
+		pWind->WaitMouseClick(PWait.x, PWait.y);
 	}
-	else 
-		style =FRAME;
-	pWind->DrawTriangle(p1.x,p1.y,p2.x,p2.y,p3.x,p3.y,style);
+	else
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor;
+		else
+			DrawingClr = TriGfxInfo.DrawClr;
+		pWind->SetPen(DrawingClr, 1);
+		drawstyle style;
+		if (TriGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(TriGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+		pWind->DrawTriangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, style);
+	}
 	}
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()
