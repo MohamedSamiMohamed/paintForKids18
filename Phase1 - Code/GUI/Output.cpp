@@ -193,7 +193,80 @@ int Output::getCrntPenWidth() const		//get current pen width
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//
-
+void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
+{
+	if (p1.y >UI.height - UI.StatusBarHeight)
+	{
+		return;
+	}
+	if (p1.y + 20 >UI.height - UI.StatusBarHeight)
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+		else
+			DrawingClr = RectGfxInfo.DrawClr;
+
+		pWind->SetPen(DrawingClr, 1);
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawEllipse(p1.x + 30, UI.height - UI.StatusBarHeight, p1.x - 30, UI.height - UI.StatusBarHeight - 40, style);
+		return;
+	}
+	////////////
+	if (p1.y <UI.ToolBarHeight)
+	{
+		return;
+	}
+	if (p1.y - 20 <UI.ToolBarHeight)
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+		else
+			DrawingClr = RectGfxInfo.DrawClr;
+
+		pWind->SetPen(DrawingClr, 1);
+		drawstyle style;
+		if (RectGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(RectGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawEllipse(p1.x + 30, UI.ToolBarHeight + 40, p1.x - 30, UI.ToolBarHeight, style);
+		return;
+	}
+
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = RectGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, 1);
+	drawstyle style;
+	if (RectGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(RectGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+
+	//pWind->DrawEllipse(p1.x,p1.y - 30,p1.x +20,p1.y + 30 , style);
+	pWind->DrawEllipse(p1.x + 30, p1.y + 20, p1.x - 30, p1.y - 20, style);
+}
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
 	color DrawingClr;
