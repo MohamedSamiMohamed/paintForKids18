@@ -39,6 +39,9 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_LOAD,
 
 	//TODO: Add more items names here
+	ITM_FORWARD,
+	ITM_BACKWARD,
+	ITM_RESIZE,
 	ITM_PLAY,//*****BH*****
 	ITM_EXIT,
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

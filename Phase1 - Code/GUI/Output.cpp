@@ -6,7 +6,7 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1200;
+	UI.width = 1400;
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
@@ -122,6 +122,9 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Save.jpg";
 	MenuItemImages[ITM_SAVE_BY_TYPE] = "images\\MenuItems\\SAVE_BY_TYPE.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Load.jpg";
+	MenuItemImages[ITM_FORWARD] = "images\\MenuItems\\FORWARD.jpg";
+	MenuItemImages[ITM_BACKWARD] = "images\\MenuItems\\BACKWARD.jpg";
+	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\resize.jpg";
 
 
 
@@ -273,15 +276,43 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 }
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
-	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight
-		|| (P1.y > UI.height - UI.StatusBarHeight) || (P2.y > UI.height - UI.StatusBarHeight))
-	{
-		Point PWait;
-		PrintMessage("Invalid !");
-		pWind->WaitMouseClick(PWait.x, PWait.y);
+	Point Pwait;
+	if (P1.y<UI.ToolBarHeight&&P2.y>UI.ToolBarHeight)   //****MS****  the 2 point will be checked if one point is on the tool bar and the other 
+														//is on the drawing area the triangule will be shifted 
+	{
+		P1.y += (UI.ToolBarHeight - P1.y) + 5;
+		P2.y += (UI.ToolBarHeight - P1.y) + 5;
+
+	}
+	else if (P1.y>UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) {
+		P1.y += (UI.ToolBarHeight - P2.y) + 5;
+		P2.y += (UI.ToolBarHeight - P2.y) + 5;
+	}
+	else if (P1.y>UI.height - UI.StatusBarHeight&&P2.y<UI.height - UI.StatusBarHeight)   //****MS**** if one point is on the status bar and the othe r
+																						 // is on the drawing area the rect will be shifted 
+	{
+
+		P2.y -= P1.y - (UI.height - UI.StatusBarHeight) + 5;
+		P1.y -= P1.y - (UI.height - UI.StatusBarHeight) + 5;
+
+	}
+	else if (P2.y>UI.height - UI.StatusBarHeight&&P1.y<UI.height - UI.StatusBarHeight)
+	{
+
+		P1.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
+		P2.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
+
+	}
+
+
+	else if ((P1.y<UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) || (P1.y>UI.height - UI.StatusBarHeight&&P2.y>UI.height - UI.StatusBarHeight))    //****MS****  the 2 points will be check if they are
+																																			  // on the tool bar or on the status bar then it's invalid place for drawing 
+	{
+
+		PrintMessage("invalid place to draw the rectangule!,click anywhere to continue");
+		pWind->WaitMouseClick(Pwait.x, Pwait.y);
+		return;
 	}
-	else
-	{
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -300,7 +331,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 
 
 		pWind->DrawRectangle(P1.x, P1.y, P2.x, P2.y, style);
-	}
+	
 }
 
 //============================================================================================================//
