@@ -273,7 +273,8 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 }
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
-	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight)
+	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight
+		|| (P1.y > UI.height - UI.StatusBarHeight) || (P2.y > UI.height - UI.StatusBarHeight))
 	{
 		Point PWait;
 		PrintMessage("Invalid !");
@@ -364,7 +365,8 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 //==============================================================================================//
 void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) const {  //Draw a line
 	
-	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight)
+	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight
+		|| (P1.y > UI.height - UI.StatusBarHeight) || (P2.y > UI.height - UI.StatusBarHeight))
 	{
 		Point PWait;
 		PrintMessage("Invalid !");
@@ -392,7 +394,9 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) c
 
 void Output::DrawTri(Point p1,Point p2,Point p3, GfxInfo TriGfxInfo, bool selected)const  //****MS*****
 {
-	if (p1.y <= UI.ToolBarHeight || p2.y <= UI.ToolBarHeight || p3.y <= UI.ToolBarHeight)
+	if (p1.y <= UI.ToolBarHeight || p2.y <= UI.ToolBarHeight || p3.y <= UI.ToolBarHeight
+		|| (p1.y > UI.height - UI.StatusBarHeight) || (p2.y > UI.height - UI.StatusBarHeight)
+		|| (p3.y > UI.height - UI.StatusBarHeight))
 	{
 		Point PWait;
 		PrintMessage("Invalid !");
