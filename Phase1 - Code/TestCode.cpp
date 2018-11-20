@@ -10,7 +10,7 @@ int main()
 	//Create Input and Output objects to test
 	Output *pOut = new Output();
 	Input *pIn = pOut->CreateInput();
-	
+	/*
 	//Starting the test
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -189,52 +189,95 @@ int main()
 	pOut->ClearDrawArea();
 	
 	
-	/// 2.5- Ellipse Test ///
-	/// =================== 
-	pOut->PrintMessage("Drawing an Ellipse, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
-
-								///TODO: Add code to draw Ellipse in all possible states 
-								// 2.1.1 - Drawing non-filled ellipse
-	pOut->PrintMessage("Drawing an Ellipse ==> non-filled,  Click a point");
-	pIn->GetPointClicked(P1.x, P1.y);
-
-	gfxInfo.BorderWdth = 5;
-	gfxInfo.DrawClr = BLACK;	//any color for border
-	gfxInfo.isFilled = false;	//Figure is NOT filled
-	pOut->DrawEll(P1, gfxInfo, false);
-
-	// 2.1.2 - Drawing highlighted non-filled Ellipse
-	pOut->PrintMessage("Drawing an Ellipse ==> Highlighted non-filled, Click to Highlight");
-	pIn->GetPointClicked(x, y);	//Wait for any click
-	pOut->DrawEll(P1, gfxInfo, true);
-
-
-	// 2.1.3 - Drawing a filled Ellipse
-	pOut->PrintMessage("Drawing an Ellipse ==> filled,  Click one point");
-	pIn->GetPointClicked(P1.x, P1.y);
-
-
-	gfxInfo.BorderWdth = 6;
-	gfxInfo.DrawClr = BLUE;	//any color for border
-	gfxInfo.FillClr = GREEN;//any color for filling
-	gfxInfo.isFilled = true;//Figure is filled
-	pOut->DrawEll(P1, gfxInfo, false);
-
-
-	// 2.1.4 - Drawing a highlighted filled Ellipse
-	pOut->PrintMessage("Drawing an Ellipse ==> Highlighted filled, Click to Highlight");
-	pIn->GetPointClicked(x, y);	//Wait for any click
-	pOut->DrawEll(P1, gfxInfo, true);
-
-
-
-	pOut->PrintMessage("Drawing an Ellipse Test ==> OK,  Click anywhere to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
-	pOut->ClearDrawArea();
+	/// 2.5- Ellipse Test ///
+
+	/// =================== 
+
+	pOut->PrintMessage("Drawing an Ellipse, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
+
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 
 
+								///TODO: Add code to draw Ellipse in all possible states 
+
+								// 2.1.1 - Drawing non-filled ellipse
+
+	pOut->PrintMessage("Drawing an Ellipse ==> non-filled,  Click a point");
+
+	pIn->GetPointClicked(P1.x, P1.y);
+
+
+
+	gfxInfo.BorderWdth = 5;
+
+	gfxInfo.DrawClr = BLACK;	//any color for border
+
+	gfxInfo.isFilled = false;	//Figure is NOT filled
+
+	pOut->DrawEll(P1, gfxInfo, false);
+
+
+
+	// 2.1.2 - Drawing highlighted non-filled Ellipse
+
+	pOut->PrintMessage("Drawing an Ellipse ==> Highlighted non-filled, Click to Highlight");
+
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
+	pOut->DrawEll(P1, gfxInfo, true);
+
+
+
+
+
+	// 2.1.3 - Drawing a filled Ellipse
+
+	pOut->PrintMessage("Drawing an Ellipse ==> filled,  Click one point");
+
+	pIn->GetPointClicked(P1.x, P1.y);
+
+
+
+
+
+	gfxInfo.BorderWdth = 6;
+
+	gfxInfo.DrawClr = BLUE;	//any color for border
+
+	gfxInfo.FillClr = GREEN;//any color for filling
+
+	gfxInfo.isFilled = true;//Figure is filled
+
+	pOut->DrawEll(P1, gfxInfo, false);
+
+
+
+
+
+	// 2.1.4 - Drawing a highlighted filled Ellipse
+
+	pOut->PrintMessage("Drawing an Ellipse ==> Highlighted filled, Click to Highlight");
+
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
+	pOut->DrawEll(P1, gfxInfo, true);
+
+
+
+
+
+
+
+	pOut->PrintMessage("Drawing an Ellipse Test ==> OK,  Click anywhere to continue");
+
+	pIn->GetPointClicked(x, y);	//Wait for any click
+
+	pOut->ClearDrawArea();
+
+
+
+	*/
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 3: 
 	//			Input Class: Read strings from the user
@@ -251,7 +294,7 @@ int main()
 	
 	string inputString = pIn->GetSrting(pOut); //Hassanin: type whatever you want then press enter 
 					   //to get out of the function
-	pOut->PrintMessage("");
+	pOut->ClearStatusBar();
 	pOut->PrintMessage("You Entered: " + inputString);
 	
 	pIn->GetPointClicked(x,y);	//Wait for any click
