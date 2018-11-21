@@ -6,7 +6,7 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1400;
+	UI.width = 1300;
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
@@ -196,7 +196,7 @@ int Output::getCrntPenWidth() const		//get current pen width
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//
-void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
+void Output::DrawEll(Point p1, GfxInfo EllGfxInfo, bool selected) const
 {
 	if (p1.y >UI.height - UI.StatusBarHeight)
 	{		Point PWait;
@@ -204,25 +204,25 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 		pWind->WaitMouseClick(PWait.x, PWait.y);
 		return;
 	}
-	if (p1.y + 20 >UI.height - UI.StatusBarHeight)
+	if (p1.y + 40 >UI.height - UI.StatusBarHeight)
 	{
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 		else
-			DrawingClr = RectGfxInfo.DrawClr;
+			DrawingClr = EllGfxInfo.DrawClr;
 
 		pWind->SetPen(DrawingClr, 1);
 		drawstyle style;
-		if (RectGfxInfo.isFilled)
+		if (EllGfxInfo.isFilled)
 		{
 			style = FILLED;
-			pWind->SetBrush(RectGfxInfo.FillClr);
+			pWind->SetBrush(EllGfxInfo.FillClr);
 		}
 		else
 			style = FRAME;
 
-		pWind->DrawEllipse(p1.x + 30, UI.height - UI.StatusBarHeight, p1.x - 30, UI.height - UI.StatusBarHeight - 40, style);
+		pWind->DrawEllipse(p1.x + 60, UI.height - UI.StatusBarHeight, p1.x - 60, UI.height - UI.StatusBarHeight - 80, style);
 		return;
 	}
 	////////////
@@ -232,25 +232,25 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 		pWind->WaitMouseClick(PWait.x, PWait.y);
 		return;
 	}
-	if (p1.y - 20 <UI.ToolBarHeight)
+	if (p1.y - 40 <UI.ToolBarHeight)
 	{
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 		else
-			DrawingClr = RectGfxInfo.DrawClr;
+			DrawingClr = EllGfxInfo.DrawClr;
 
 		pWind->SetPen(DrawingClr, 1);
 		drawstyle style;
-		if (RectGfxInfo.isFilled)
+		if (EllGfxInfo.isFilled)
 		{
 			style = FILLED;
-			pWind->SetBrush(RectGfxInfo.FillClr);
+			pWind->SetBrush(EllGfxInfo.FillClr);
 		}
 		else
 			style = FRAME;
 
-		pWind->DrawEllipse(p1.x + 30, UI.ToolBarHeight + 40, p1.x - 30, UI.ToolBarHeight, style);
+		pWind->DrawEllipse(p1.x + 60, UI.ToolBarHeight + 80, p1.x - 60, UI.ToolBarHeight, style);
 		return;
 	}
 
@@ -258,27 +258,27 @@ void Output::DrawEll(Point p1, GfxInfo RectGfxInfo, bool selected) const
 	if (selected)
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else
-		DrawingClr = RectGfxInfo.DrawClr;
+		DrawingClr = EllGfxInfo.DrawClr;
 
 	pWind->SetPen(DrawingClr, 1);
 	drawstyle style;
-	if (RectGfxInfo.isFilled)
+	if (EllGfxInfo.isFilled)
 	{
 		style = FILLED;
-		pWind->SetBrush(RectGfxInfo.FillClr);
+		pWind->SetBrush(EllGfxInfo.FillClr);
 	}
 	else
 		style = FRAME;
 
 
 	//pWind->DrawEllipse(p1.x,p1.y - 30,p1.x +20,p1.y + 30 , style);
-	pWind->DrawEllipse(p1.x + 30, p1.y + 20, p1.x - 30, p1.y - 20, style);
+	pWind->DrawEllipse(p1.x + 60, p1.y + 40, p1.x - 60, p1.y - 40, style);
 }
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
 	Point Pwait;
 	if (P1.y<UI.ToolBarHeight&&P2.y>UI.ToolBarHeight)   //****MS****  the 2 point will be checked if one point is on the tool bar and the other 
-														//is on the drawing area the triangule will be shifted 
+														//is on the drawing area the rectangle will be shifted 
 	{
 		P1.y += (UI.ToolBarHeight - P1.y) + 5;
 		P2.y += (UI.ToolBarHeight - P1.y) + 5;
