@@ -10,7 +10,7 @@ int main()
 	//Create Input and Output objects to test
 	Output *pOut = new Output();
 	Input *pIn = pOut->CreateInput();
-	/*
+
 	//Starting the test
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -277,7 +277,7 @@ int main()
 
 
 
-	*/
+
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 3: 
 	//			Input Class: Read strings from the user
@@ -298,6 +298,7 @@ int main()
 	pOut->PrintMessage("You Entered: " + inputString);
 	
 	pIn->GetPointClicked(x,y);	//Wait for any click
+	
 
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 4: 
@@ -420,13 +421,27 @@ int main()
 				pOut->ClearToolBar();
 				pOut->CreatePlayToolBar();
 				break;
+		
 		case SELECT_BY_TYPE:
 			pOut->PrintMessage("Action : a click on select by type, Click anywhere ");
 			break;
+		
 		case SELECT_BY_COLOUR:
 			pOut->PrintMessage("Action: a click on select by colour ,click anywhere ");
-
-
+			break;
+		
+		case RESIZE:
+			pOut->PrintMessage("Action : a click on Resize, Click anywhere ");
+			break;
+		
+		case SEND_TO_BACK:
+			pOut->PrintMessage("Action : a click on send to back, Click anywhere ");
+			break;
+		
+		case BRING_TO_FRONT:
+			pOut->PrintMessage("Action : a click on bring to front, Click anywhere ");
+			break;
+		
 		case EXIT:				
 				break;
 		}

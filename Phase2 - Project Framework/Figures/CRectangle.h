@@ -11,6 +11,7 @@ private:
 public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
+	virtual void Save(ofstream &OutFile);	//Save the figure parameters to the file
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
-
+#include "SaveAction.h"
+#include <fstream>
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -39,14 +40,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case DRAW_LINE:
 			///create AddLineAction here
-
 			break;
-
+		case SAVE_BY_TYPE:
+			
+			break;
+		case SAVE:
+			pAct = new SaveAction(this);
+			break;
+			
 		case EXIT:
 			///create ExitAction here
 			
 			break;
-		
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
@@ -107,4 +112,10 @@ ApplicationManager::~ApplicationManager()
 	delete pIn;
 	delete pOut;
 	
+}
+void ApplicationManager::SaveAll(ofstream &OutFile) {
+
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->Save(OutFile);
+	}
 }

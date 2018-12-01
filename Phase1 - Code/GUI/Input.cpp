@@ -74,6 +74,10 @@ ActionType Input::GetUserAction() const
 			case ITM_SAVE: return SAVE;
 			case ITM_SAVE_BY_TYPE: return SAVE_BY_TYPE;
 			case ITM_LOAD: return LOAD;
+			
+			case ITM_FORWARD: return BRING_TO_FRONT;
+			case ITM_BACKWARD: return SEND_TO_BACK;
+			case ITM_RESIZE: return RESIZE;
 
 			case ITM_PLAY: return TO_PLAY;			
 			case ITM_EXIT: return EXIT;	

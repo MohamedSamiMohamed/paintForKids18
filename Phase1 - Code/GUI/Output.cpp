@@ -10,8 +10,7 @@ Output::Output()
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
-
-	
+    
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
 	UI.MenuItemWidth = 50;
@@ -196,122 +195,133 @@ int Output::getCrntPenWidth() const		//get current pen width
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//
-void Output::DrawEll(Point p1, GfxInfo EllGfxInfo, bool selected) const
-{
-	if (p1.y >UI.height - UI.StatusBarHeight)
-	{		Point PWait;
+void Output::DrawEll(Point p1, GfxInfo EllGfxInfo, bool selected) const
+
+{
+    if (p1.y >UI.height - UI.StatusBarHeight)
+    {
+		Point PWait;
 		PrintMessage("Invalid !");
 		pWind->WaitMouseClick(PWait.x, PWait.y);
-		return;
-	}
-	if (p1.y + 40 >UI.height - UI.StatusBarHeight)
-	{
-		color DrawingClr;
-		if (selected)
-			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
-		else
-			DrawingClr = EllGfxInfo.DrawClr;
-
-		pWind->SetPen(DrawingClr, 1);
-		drawstyle style;
-		if (EllGfxInfo.isFilled)
-		{
-			style = FILLED;
-			pWind->SetBrush(EllGfxInfo.FillClr);
-		}
-		else
-			style = FRAME;
-
-		pWind->DrawEllipse(p1.x + 60, UI.height - UI.StatusBarHeight, p1.x - 60, UI.height - UI.StatusBarHeight - 80, style);
-		return;
-	}
-	////////////
-	if (p1.y <UI.ToolBarHeight)
-	{		Point PWait;
+		return;
+	}
+
+	if (p1.y + 40 >UI.height - UI.StatusBarHeight)
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+		else
+			DrawingClr = EllGfxInfo.DrawClr;
+
+		pWind->SetPen(DrawingClr, 1);
+
+		drawstyle style;
+		if (EllGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(EllGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawEllipse(p1.x + 60, UI.height - UI.StatusBarHeight, p1.x - 60, UI.height - UI.StatusBarHeight - 80, style);
+		return;
+	}
+
+	////////////
+	if (p1.y <UI.ToolBarHeight)
+	{
+		Point PWait;
 		PrintMessage("Invalid !");
 		pWind->WaitMouseClick(PWait.x, PWait.y);
-		return;
-	}
-	if (p1.y - 40 <UI.ToolBarHeight)
-	{
-		color DrawingClr;
-		if (selected)
-			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
-		else
-			DrawingClr = EllGfxInfo.DrawClr;
-
-		pWind->SetPen(DrawingClr, 1);
-		drawstyle style;
-		if (EllGfxInfo.isFilled)
-		{
-			style = FILLED;
-			pWind->SetBrush(EllGfxInfo.FillClr);
-		}
-		else
-			style = FRAME;
-
-		pWind->DrawEllipse(p1.x + 60, UI.ToolBarHeight + 80, p1.x - 60, UI.ToolBarHeight, style);
-		return;
-	}
-
-	color DrawingClr;
-	if (selected)
-		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
-	else
-		DrawingClr = EllGfxInfo.DrawClr;
-
-	pWind->SetPen(DrawingClr, 1);
-	drawstyle style;
-	if (EllGfxInfo.isFilled)
-	{
-		style = FILLED;
-		pWind->SetBrush(EllGfxInfo.FillClr);
-	}
-	else
-		style = FRAME;
-
-
-	//pWind->DrawEllipse(p1.x,p1.y - 30,p1.x +20,p1.y + 30 , style);
-	pWind->DrawEllipse(p1.x + 60, p1.y + 40, p1.x - 60, p1.y - 40, style);
+		return;
+	}
+
+	if (p1.y - 40 <UI.ToolBarHeight)
+	{
+		color DrawingClr;
+		if (selected)
+			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+		else
+			DrawingClr = EllGfxInfo.DrawClr;
+
+		pWind->SetPen(DrawingClr, 1);
+
+		drawstyle style;
+
+		if (EllGfxInfo.isFilled)
+		{
+			style = FILLED;
+			pWind->SetBrush(EllGfxInfo.FillClr);
+		}
+		else
+			style = FRAME;
+
+		pWind->DrawEllipse(p1.x + 60, UI.ToolBarHeight + 80, p1.x - 60, UI.ToolBarHeight, style);
+		return;
+	}
+
+
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = EllGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, 1);
+
+	drawstyle style;
+	if (EllGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(EllGfxInfo.FillClr);
+	}
+	else
+	style = FRAME;
+
+	pWind->DrawEllipse(p1.x + 60, p1.y + 40, p1.x - 60, p1.y - 40, style);
 }
+
+
 void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
 {
-	Point Pwait;
-	if (P1.y<UI.ToolBarHeight&&P2.y>UI.ToolBarHeight)   //****MS****  the 2 point will be checked if one point is on the tool bar and the other 
-														//is on the drawing area the rectangle will be shifted 
-	{
-		P1.y += (UI.ToolBarHeight - P1.y) + 5;
-		P2.y += (UI.ToolBarHeight - P1.y) + 5;
-
-	}
-	else if (P1.y>UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) {
-		P1.y += (UI.ToolBarHeight - P2.y) + 5;
-		P2.y += (UI.ToolBarHeight - P2.y) + 5;
-	}
-	else if (P1.y>UI.height - UI.StatusBarHeight&&P2.y<UI.height - UI.StatusBarHeight)   //****MS**** if one point is on the status bar and the othe r
-																						 // is on the drawing area the rect will be shifted 
-	{
-
-		P2.y -= P1.y - (UI.height - UI.StatusBarHeight) + 5;
-		P1.y -= P1.y - (UI.height - UI.StatusBarHeight) + 5;
-
-	}
-	else if (P2.y>UI.height - UI.StatusBarHeight&&P1.y<UI.height - UI.StatusBarHeight)
-	{
-
-		P1.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
-		P2.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
-
-	}
-
-
-	else if ((P1.y<UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) || (P1.y>UI.height - UI.StatusBarHeight&&P2.y>UI.height - UI.StatusBarHeight))    //****MS****  the 2 points will be check if they are
-																																			  // on the tool bar or on the status bar then it's invalid place for drawing 
-	{
-
-		PrintMessage("invalid place to draw the rectangule!,click anywhere to continue");
-		pWind->WaitMouseClick(Pwait.x, Pwait.y);
-		return;
+	Point Pwait;
+	if (P1.y<UI.ToolBarHeight&&P2.y>UI.ToolBarHeight)   //****MS****  the 2 point will be checked if one point is on the tool bar and the other 
+
+														//is on the drawing area the rectangle will be shifted 
+	{
+		P1.y += (UI.ToolBarHeight - P1.y) + 5;
+		P2.y += (UI.ToolBarHeight - P1.y) + 5;
+	}
+
+	else if (P1.y>UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) 
+	{
+		P1.y += (UI.ToolBarHeight - P2.y) + 5;
+		P2.y += (UI.ToolBarHeight - P2.y) + 5;
+	}
+
+	else if (P1.y>UI.height - UI.StatusBarHeight&&P2.y<UI.height - UI.StatusBarHeight)   //****MS**** if one point is on the status bar and the othe r
+
+																						 // is on the drawing area the rect will be shifted 
+	{
+		P2.y -= P1.y - (UI.height - UI.StatusBarHeight) + 5;
+		P1.y -= P1.y - (UI.height - UI.StatusBarHeight) + 5;
+	}
+
+	else if (P2.y>UI.height - UI.StatusBarHeight&&P1.y<UI.height - UI.StatusBarHeight)
+	{
+		P1.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
+		P2.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
+	}
+
+	else if ((P1.y<UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) || (P1.y>UI.height - UI.StatusBarHeight&&P2.y>UI.height - UI.StatusBarHeight))    //****MS****  the 2 points will be check if they are
+
+																																			  // on the tool bar or on the status bar then it's invalid place for drawing 
+	{
+		PrintMessage("invalid place to draw the rectangule!,click anywhere to continue");
+		pWind->WaitMouseClick(Pwait.x, Pwait.y);
+		return;
 	}
 		color DrawingClr;
 		if (selected)
