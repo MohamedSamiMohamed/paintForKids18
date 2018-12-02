@@ -1,6 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
 #include "SaveAction.h"
+#include "LoadAction.h"
 #include <fstream>
 
 //Constructor
@@ -47,6 +48,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
+		case LOAD:
+			pAct = new LoadAction(this);
 			
 		case EXIT:
 			///create ExitAction here
@@ -113,9 +116,14 @@ ApplicationManager::~ApplicationManager()
 	delete pOut;
 	
 }
-void ApplicationManager::SaveAll(ofstream &OutFile) {
+void ApplicationManager::SaveAll(ofstream &outFile) {
 
 	for (int i = 0; i < FigCount; i++) {
-		FigList[i]->Save(OutFile);
+		FigList[i]->Save(outFile);
+	}
+}
+void ApplicationManager::LoadAll(ifstream &inFile) {
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->Load(inFile);
 	}
 }

@@ -171,6 +171,7 @@
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SaveAction.cpp" />
   </ItemGroup>
@@ -204,6 +205,7 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="LoadAction.h" />
     <ClInclude Include="SaveAction.h" />
   </ItemGroup>
   <ItemGroup>
