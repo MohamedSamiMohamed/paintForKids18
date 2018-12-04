@@ -13,7 +13,7 @@ public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 	virtual void Save(ofstream &outFile);	//Save the figure parameters to the file
-	virtual void Load(ifstream &inFile);	//Load the figure parameters to the file
+	virtual void Load(ifstream &myFile);	//Load the figure parameters to the file
 };
 
 #endif

@@ -19,11 +19,40 @@ void LoadAction::ReadActionParameters() {
 void LoadAction::Execute() {
 	ReadActionParameters();
 	inputString = inputString + ".txt";
-	ifstream myfile(inputString); //opens the file
-	if (myfile.is_open())
+	ifstream myFile(inputString); //opens the file
+
+	if (myFile.is_open())
 	{
-		pManager->LoadAll(myfile);
-		myfile.close();
+
+		int id;
+		
+		int type_int;
+		enum type
+		{
+			Rectangle
+		};
+
+		while (myFile >> type_int)			//reads from the file.
+		{
+			switch (type_int)
+			{
+			case Rectangle: {
+				Point P1, P2;
+				P1.x = 0; P1.y = 0;
+				P2.x = 0; P2.y = 0;
+				GfxInfo RectGfxInfo;
+				CRectangle * R = new CRectangle(P1, P2, RectGfxInfo);
+				CFigure * A = R;
+				A->Load(myFile);
+				pManager->AddFigure(A);
+				break; 
+			}
+			default:
+				break; 
+			}
+		}
+		myFile.close();
+		pManager->DrawALL();
 	}
 	else
 	{

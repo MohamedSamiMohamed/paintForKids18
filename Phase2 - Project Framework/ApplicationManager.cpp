@@ -122,8 +122,9 @@ void ApplicationManager::SaveAll(ofstream &outFile) {
 		FigList[i]->Save(outFile);
 	}
 }
-void ApplicationManager::LoadAll(ifstream &inFile) {
+void ApplicationManager::DrawALL() {
+	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++) {
-		FigList[i]->Load(inFile);
+		FigList[i]->Draw(pOut);
 	}
 }
