@@ -12,9 +12,11 @@ void SaveAction::ReadActionParameters() {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+	pOut->PrintMessage("please enter the file name");
 	inputString = pIn->GetSrting(pOut);
 }
-void SaveAction::Execute() {
+void SaveAction::Execute() 
+{
 	ReadActionParameters();
 	ofstream myfile;
 	inputString = inputString + ".txt";

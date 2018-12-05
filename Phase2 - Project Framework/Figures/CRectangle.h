@@ -3,6 +3,13 @@
 
 #include "CFigure.h"
 
+enum color_project {
+	Black1,
+	WHITE1,
+	RED1,
+	GREEN1,
+	BLUE1
+};
 class CRectangle : public CFigure
 {
 private:

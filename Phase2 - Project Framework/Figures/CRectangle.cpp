@@ -17,36 +17,29 @@ void CRectangle::Draw(Output* pOut) const
 int CRectangle::count = 0;
 void CRectangle::Save(ofstream &outFile) {
 	ID = ++count;
-	outFile << "Rectangle\t" << ID << "\n";// << "\t(" << "," << Corner2 << FigGfxInfo.DrawClr << "\n";
+	outFile << 0 << "\t" << Corner1.x << " " << Corner1.y << "\t" << Corner2.x << " " << Corner2.y;
+	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;// << "\t(" << "," << Corner2 << FigGfxInfo.DrawClr << "\n";
+	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;// << "\t(" << "," << Corner2 << FigGfxInfo.DrawClr << "\n";
+	outFile << "\t" <<FigGfxInfo.isFilled << "\n";
 }
 
 void CRectangle::Load(ifstream &myFile) {
-	int color_draw, color_fill;
-	color clr_draw, clr_fill;
-	enum color_project {
-		Black1,
-		WHITE1,
-		RED1,
-		GREEN1,
-		BLUE1
-	};
-
 	myFile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y;
 
 	//get drawing, filling colors and pen width from the file
+	int B, R, G;
 
-	myFile >> color_draw >> color_fill;
-	switch (color_draw) {
-	case WHITE1:
-		clr_draw = WHITE;
-		break;
-	}
-	switch (color_fill) 
-	{
-	case WHITE1:
-		clr_draw = WHITE;
-		break;
-	}
-	FigGfxInfo.DrawClr = clr_draw;
-	FigGfxInfo.FillClr = clr_fill;
+	myFile >> B >> R >> G;
+	FigGfxInfo.FillClr.ucBlue = (char)B;
+	FigGfxInfo.FillClr.ucRed = (char)R;
+	FigGfxInfo.FillClr.ucGreen = (char)G;
+	
+	myFile >> B >> R >> G;
+	FigGfxInfo.DrawClr.ucBlue = (char)B;
+	FigGfxInfo.DrawClr.ucRed = (char)R;
+	FigGfxInfo.DrawClr.ucGreen = (char)G;
+	
+	int IsFilled;
+	myFile >> IsFilled;
+	FigGfxInfo.isFilled = IsFilled;
 }

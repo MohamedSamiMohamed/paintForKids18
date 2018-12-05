@@ -42,9 +42,8 @@ void LoadAction::Execute() {
 				P2.x = 0; P2.y = 0;
 				GfxInfo RectGfxInfo;
 				CRectangle * R = new CRectangle(P1, P2, RectGfxInfo);
-				CFigure * A = R;
-				A->Load(myFile);
-				pManager->AddFigure(A);
+				R->Load(myFile);
+				pManager->AddFigure(R);
 				break; 
 			}
 			default:
@@ -52,7 +51,6 @@ void LoadAction::Execute() {
 			}
 		}
 		myFile.close();
-		pManager->DrawALL();
 	}
 	else
 	{
