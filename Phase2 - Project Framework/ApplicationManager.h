@@ -38,9 +38,13 @@ public:
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
-	void UpdateInterface() const;	//Redraws all the drawing window	
-	void SaveAll(ofstream &outFile );
-	void DrawALL();
+	void UpdateInterface() const;	//Redraws all the drawing window
+
+	void SaveAll(ofstream &outFile);
+
+	void setselectedfig(CFigure* pFig); //M.a: Sets a figure to be selected
+	CFigure* Getselectedfigure() const; //M.a: Returns the current selected figure
+	void SetSelectedfigNULL(); //M.A: To set selcted figure to NULL
 };
 
 #endif

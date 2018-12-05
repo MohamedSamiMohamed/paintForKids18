@@ -1,10 +1,10 @@
 #include "LoadAction.h"
-#include "Figures\CRectangle.h"
+#include "..\Figures\CRectangle.h"
 
-#include "ApplicationManager.h"
+#include "..\ApplicationManager.h"
 
-#include "GUI/Input.h"
-#include "GUI\Output.h"
+#include "..\GUI/Input.h"
+#include "..\GUI\Output.h"
 #include <iostream>
 
 

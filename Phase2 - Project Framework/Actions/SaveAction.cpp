@@ -1,11 +1,11 @@
 #include "SaveAction.h"
-#include "Figures\CRectangle.h"
 
-#include "ApplicationManager.h"
+#include "..\ApplicationManager.h"
 
-#include "GUI/Input.h"
-#include "GUI\Output.h"
+#include "..\GUI\Input.h"
+#include "..\GUI\Output.h"
 #include <iostream>
+
 SaveAction::SaveAction(ApplicationManager * pApp) :Action(pApp)
 {}
 void SaveAction::ReadActionParameters() {

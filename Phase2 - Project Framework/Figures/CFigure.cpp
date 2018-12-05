@@ -21,3 +21,9 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
+//M.A://///////////////////////
+void CFigure :: SetFigID(int id)
+{
+	ID = id;
+}
+///////////////////////////////

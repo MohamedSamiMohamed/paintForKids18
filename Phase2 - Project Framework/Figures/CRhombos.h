@@ -3,20 +3,47 @@
 
 #include "CFigure.h"
 
-class CRectangle : public CFigure
+class CRhombos : public CFigure
 {
 private:
-	Point Corner1;	
-	Point Corner2;
+	Point Centre;	
+
 public:
-	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
+	CRhombos(Point , GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 
 	virtual bool Isinsideboundaries(int x, int y) const;
-
+	virtual void PrintInfo(Output* pOut) const;
 	virtual void Save(ofstream &outFile);	//Save the figure parameters to the file
 	virtual void Load(ifstream &myFile);	//Load the figure parameters to the file
-	void PrintInfo(Output* pOut) const;
 };
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

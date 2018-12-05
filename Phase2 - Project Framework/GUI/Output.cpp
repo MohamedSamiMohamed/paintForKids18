@@ -366,9 +366,9 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 			DrawingClr = UI.DrawColor;  //setting draw colour
 
 
-		if (P1.y < UI.ToolBarHeight + 100)
+		if (P1.y < UI.ToolBarHeight + 50)
 		{
-			double AboveToolbar = 100 - (P1.y - UI.ToolBarHeight);
+			double AboveToolbar = 50 - (P1.y - UI.ToolBarHeight);
 			P1.y += AboveToolbar;
 		}
 
@@ -376,13 +376,13 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 		int* py = new int[4];
 
 		px[0] = P1.x;
-		px[1] = P1.x + 80;
+		px[1] = P1.x + 40;
 		px[2] = P1.x;
-		px[3] = P1.x - 80;                              //M.A :setting an array of x values for vertices
+		px[3] = P1.x - 40;                              //M.A :setting an array of x values for vertices
 
-		py[0] = P1.y + 100;
+		py[0] = P1.y + 50;
 		py[1] = P1.y;
-		py[2] = P1.y - 100;
+		py[2] = P1.y - 50;
 		py[3] = P1.y;                                   //M.A :setting an array of y values for vertices
 
 		pWind->SetPen(DrawingClr, 1);
@@ -409,9 +409,13 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) c
 	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight
 		|| (P1.y > UI.height - UI.StatusBarHeight) || (P2.y > UI.height - UI.StatusBarHeight))
 	{
-		Point PWait;
 		PrintMessage("Invalid !");
-		pWind->WaitMouseClick(PWait.x, PWait.y);
+		pWind->GetMouseClick(P1.x, P1.y);
+		pWind->GetMouseClick(P2.x,P2.y);
+		
+		pWind->FlushMouseQueue();
+		
+		
 	}
 	else
 	{
@@ -421,7 +425,7 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) c
 		else
 			DrawingClr = LineGfxInfo.DrawClr;
 
-		pWind->SetPen(DrawingClr, 5);
+		pWind->SetPen(DrawingClr, 3);
 		drawstyle style;
 		style = FRAME;
 
