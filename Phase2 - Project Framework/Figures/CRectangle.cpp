@@ -72,8 +72,8 @@ void CRectangle::PrintInfo(Output* pOut) const
 
 void CRectangle::Save(ofstream &outFile) {
 	outFile << 0 << "\t" << Corner1.x << " " << Corner1.y << "\t" << Corner2.x << " " << Corner2.y;
-	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;// << "\t(" << "," << Corner2 << FigGfxInfo.DrawClr << "\n";
-	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;// << "\t(" << "," << Corner2 << FigGfxInfo.DrawClr << "\n";
+	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
+	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
 	outFile << "\t" << FigGfxInfo.isFilled << "\n";
 }
 

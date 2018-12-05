@@ -1,4 +1,5 @@
 #include "CTriangle.h"
+#include <fstream>
 
 CTriangle::CTriangle(Point P1, Point P2,Point P3, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -45,9 +46,31 @@ void CTriangle::PrintInfo(Output * pOut) const
 }
 
 void CTriangle::Save(ofstream &outFile) {
-
+	outFile << 4 << "\t" << Corner1.x << " " << Corner1.y << "\t" << Corner2.x << " " << Corner2.y << "\t" << Corner3.x << " " << Corner3.y;
+	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
+	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
+	outFile << "\t" << FigGfxInfo.isFilled << "\n";
 }
+
 void CTriangle::Load(ifstream &myFile) {
+	myFile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> Corner3.x >> Corner3.y;
 
+	//get drawing, filling colors and pen width from the file
+	int B, R, G;
+
+	myFile >> B >> R >> G;
+	FigGfxInfo.FillClr.ucBlue = (char)B;
+	FigGfxInfo.FillClr.ucRed = (char)R;
+	FigGfxInfo.FillClr.ucGreen = (char)G;
+
+	myFile >> B >> R >> G;
+	FigGfxInfo.DrawClr.ucBlue = (char)B;
+	FigGfxInfo.DrawClr.ucRed = (char)R;
+	FigGfxInfo.DrawClr.ucGreen = (char)G;
+
+	int IsFilled;
+	myFile >> IsFilled;
+	FigGfxInfo.isFilled = IsFilled;
 }
+
 

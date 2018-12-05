@@ -1,6 +1,9 @@
 #include "LoadAction.h"
 #include "..\Figures\CRectangle.h"
-
+#include "..\Figures\CEllipse.h"
+#include "..\Figures\CLine.h"
+#include "..\Figures\CRhombos.h"
+#include "..\Figures\CTriangle.h"
 #include "..\ApplicationManager.h"
 
 #include "..\GUI/Input.h"
@@ -29,7 +32,11 @@ void LoadAction::Execute() {
 		int type_int;
 		enum type
 		{
-			Rectangle
+			Rectangle,
+			Ellipse,
+			Line,
+			Rhombos,
+			Triangle
 		};
 
 		while (myFile >> type_int)			//reads from the file.
@@ -41,10 +48,49 @@ void LoadAction::Execute() {
 				P1.x = 0; P1.y = 0;
 				P2.x = 0; P2.y = 0;
 				GfxInfo RectGfxInfo;
-				CRectangle * R = new CRectangle(P1, P2, RectGfxInfo);
-				R->Load(myFile);
-				pManager->AddFigure(R);
+				CRectangle * shape = new CRectangle(P1, P2, RectGfxInfo);
+				shape->Load(myFile);
+				pManager->AddFigure(shape);
 				break; 
+			}
+			case Ellipse: {
+				Point P1;
+				P1.x = 0; P1.y = 0;
+				GfxInfo RectGfxInfo;
+				CEllipse * shape = new CEllipse(P1, RectGfxInfo);
+				shape->Load(myFile);
+				pManager->AddFigure(shape);
+				break;
+			}
+			case Line: {
+				Point P1, P2;
+				P1.x = 0; P1.y = 0;
+				P2.x = 0; P2.y = 0;
+				GfxInfo RectGfxInfo;
+				CLine * shape = new CLine(P1, P2, RectGfxInfo);
+				shape->Load(myFile);
+				pManager->AddFigure(shape);
+				break;
+			}
+			case Rhombos: {
+				Point P1;
+				P1.x = 0; P1.y = 0;
+				GfxInfo RectGfxInfo;
+				CRhombos * shape = new CRhombos (P1, RectGfxInfo);
+				shape->Load(myFile);
+				pManager->AddFigure(shape);
+				break;
+			}
+			case Triangle: {
+				Point P1, P2,P3;
+				P1.x = 0; P1.y = 0;
+				P2.x = 0; P2.y = 0;
+				P3.x = 0; P3.y = 0;
+				GfxInfo RectGfxInfo;
+				CTriangle * shape = new CTriangle(P1, P2,P3, RectGfxInfo);
+				shape->Load(myFile);
+				pManager->AddFigure(shape);
+				break;
 			}
 			default:
 				break; 

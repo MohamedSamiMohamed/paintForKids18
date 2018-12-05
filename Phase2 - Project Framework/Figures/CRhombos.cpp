@@ -1,5 +1,5 @@
 #include "CRhombos.h"
-
+#include <fstream>
 CRhombos::CRhombos(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
 	Centre = P1;
@@ -31,8 +31,28 @@ void CRhombos::PrintInfo(Output * pOut) const
 }
 
 void CRhombos::Save(ofstream &outFile) {
-
+	outFile << 3 << "\t" << Centre.x << " " << Centre.y << "\t";
+	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
+	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
+	outFile << "\t" << FigGfxInfo.isFilled << "\n";
 }
 void CRhombos::Load(ifstream &myFile) {
+	myFile >> Centre.x >> Centre.y;
 
+	//get drawing, filling colors and pen width from the file
+	int B, R, G;
+
+	myFile >> B >> R >> G;
+	FigGfxInfo.FillClr.ucBlue = (char)B;
+	FigGfxInfo.FillClr.ucRed = (char)R;
+	FigGfxInfo.FillClr.ucGreen = (char)G;
+
+	myFile >> B >> R >> G;
+	FigGfxInfo.DrawClr.ucBlue = (char)B;
+	FigGfxInfo.DrawClr.ucRed = (char)R;
+	FigGfxInfo.DrawClr.ucGreen = (char)G;
+
+	int IsFilled;
+	myFile >> IsFilled;
+	FigGfxInfo.isFilled = IsFilled;
 }

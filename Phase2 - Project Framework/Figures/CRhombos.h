@@ -1,6 +1,5 @@
-#ifndef CRECT_H
-#define CRECT_H
-
+#ifndef CRHOMBOS_H	
+#define CRHOMBOS_H
 #include "CFigure.h"
 
 class CRhombos : public CFigure

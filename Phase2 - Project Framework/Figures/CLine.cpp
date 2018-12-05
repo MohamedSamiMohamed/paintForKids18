@@ -1,5 +1,5 @@
 #include "CLine.h"
-
+#include <fstream>
 CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
 	Point1 = P1;
@@ -45,8 +45,29 @@ void CLine::PrintInfo(Output * pOut) const
 }
 
 void CLine::Save(ofstream &outFile) {
-
+	outFile << 2 << "\t" << Point1.x << " " << Point1.y << "\t" << Point2.x << " " << Point2.y;
+	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
+	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
+	outFile << "\t" << FigGfxInfo.isFilled << "\n";
 }
 void CLine::Load(ifstream &myFile) {
+	myFile >> Point1.x >> Point1.y >> Point2.x >> Point2.y;
+
+	//get drawing, filling colors and pen width from the file
+	int B, R, G;
+
+	myFile >> B >> R >> G;
+	FigGfxInfo.FillClr.ucBlue = (char)B;
+	FigGfxInfo.FillClr.ucRed = (char)R;
+	FigGfxInfo.FillClr.ucGreen = (char)G;
+
+	myFile >> B >> R >> G;
+	FigGfxInfo.DrawClr.ucBlue = (char)B;
+	FigGfxInfo.DrawClr.ucRed = (char)R;
+	FigGfxInfo.DrawClr.ucGreen = (char)G;
+
+	int IsFilled;
+	myFile >> IsFilled;
+	FigGfxInfo.isFilled = IsFilled;
 
 }
