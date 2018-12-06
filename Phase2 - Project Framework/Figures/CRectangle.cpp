@@ -71,13 +71,15 @@ void CRectangle::PrintInfo(Output* pOut) const
 }
 
 void CRectangle::Save(ofstream &outFile) {
-	outFile << 0 << "\t" << Corner1.x << " " << Corner1.y << "\t" << Corner2.x << " " << Corner2.y;
-	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
-	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
-	outFile << "\t" << FigGfxInfo.isFilled << "\n";
+	outFile << 0 << " " << ID << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y;
+	outFile << " " << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
+	outFile << " " << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
+	outFile << " " << FigGfxInfo.isFilled << "\n";
 }
 
 void CRectangle::Load(ifstream &myFile) {
+	myFile >> ID;
+
 	myFile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y;
 
 	//get drawing, filling colors and pen width from the file

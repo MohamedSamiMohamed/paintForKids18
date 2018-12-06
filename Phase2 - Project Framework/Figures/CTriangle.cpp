@@ -46,13 +46,14 @@ void CTriangle::PrintInfo(Output * pOut) const
 }
 
 void CTriangle::Save(ofstream &outFile) {
-	outFile << 4 << "\t" << Corner1.x << " " << Corner1.y << "\t" << Corner2.x << " " << Corner2.y << "\t" << Corner3.x << " " << Corner3.y;
-	outFile << "\t" << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
-	outFile << "\t" << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
-	outFile << "\t" << FigGfxInfo.isFilled << "\n";
+	outFile << 4 << " "<< ID <<" " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y << " " << Corner3.x << " " << Corner3.y;
+	outFile << " " << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
+	outFile << " " << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
+	outFile << " " << FigGfxInfo.isFilled << "\n";
 }
 
 void CTriangle::Load(ifstream &myFile) {
+	myFile >> ID;
 	myFile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> Corner3.x >> Corner3.y;
 
 	//get drawing, filling colors and pen width from the file

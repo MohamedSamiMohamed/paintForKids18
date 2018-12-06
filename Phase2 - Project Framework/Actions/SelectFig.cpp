@@ -54,7 +54,7 @@ void SelectFig::Execute()
 	//If a figure was selected
 	else if (pManager->Getselectedfigure() != NULL)
 	{
-		//case2: deselcting a selected figure without selecting another(Re-clicking) or deselecting and selecting another
+		//case2: deselecting a selected figure without selecting another(Re-clicking) or deselecting and selecting another
 		if (ToBeSelected != NULL)
 		{
 			if (ToBeSelected->IsSelected())
