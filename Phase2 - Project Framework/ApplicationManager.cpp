@@ -4,12 +4,17 @@
 #include "Actions\AddLineAction.h"
 #include "Actions\AddRhomAction.h"
 #include "Actions\AddTriAction.h"
-
 #include "Actions\SaveAction.h"
 #include "Actions\LoadAction.h"
+#include "Actions/SaveByType.h"
 
-#include "Actions\SelectFig.h"
+#include "Actions/SelectFig.h"
 
+#include "Figures/CRectangle.h"
+#include "Figures/CEllipse.h"
+#include "Figures/CLine.h"
+#include "Figures/CRhombos.h"
+#include "Figures/CTriangle.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -71,6 +76,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
+
+		case SAVE_BY_TYPE:
+			pAct = new SaveByType(this);
+			break;
+
 		case LOAD:
 			pAct = new LoadAction(this);
 			break;
@@ -170,8 +180,7 @@ void ApplicationManager::SetSelectedfigNULL()
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<FigCount; i++)
-		delete FigList[i];
+	deleteAll();
 	delete pIn;
 	delete pOut;
 	
@@ -181,4 +190,79 @@ void ApplicationManager::SaveAll(ofstream &outFile) {
 	for (int i = 0; i < FigCount; i++) {
 		FigList[i]->Save(outFile);
 	}
+}
+void ApplicationManager::SaveByTypeFn(ofstream &outFile, ActionType A) {
+	switch (A)
+	{
+	case DRAW_RECT: {
+		CRectangle * rect;
+		for (int i = 0; i < FigCount; i++)
+		{
+			rect = dynamic_cast<CRectangle *> (FigList[i]);
+			if (rect != NULL) {
+				FigList[i]->Save(outFile);
+		}
+		}
+	}
+		break;
+
+	case DRAW_LINE: {
+		CLine * line;
+		for (int i = 0; i < FigCount; i++)
+		{
+			line = dynamic_cast<CLine *> (FigList[i]);
+			if (line != NULL) {
+				FigList[i]->Save(outFile);
+			}
+		}
+	}
+		break;
+
+	case DRAW_RHOMBUS:
+	{
+		CRhombos * rho;
+		for (int i = 0; i < FigCount; i++)
+		{
+			rho = dynamic_cast<CRhombos *> (FigList[i]);
+			if (rho != NULL) {
+				FigList[i]->Save(outFile);
+			}
+		}
+	}
+		break;
+
+	case DRAW_ELLIPSE: {
+		CEllipse * ell;
+		for (int i = 0; i < FigCount; i++)
+		{
+			ell = dynamic_cast<CEllipse *> (FigList[i]);
+			if (ell != NULL) {
+				FigList[i]->Save(outFile);
+			}
+		}
+	}
+		break;
+
+	case DRAW_TRI: {
+		CTriangle * tri;
+		
+		for (int i = 0; i < FigCount; i++)
+		{
+			tri = dynamic_cast<CTriangle *> (FigList[i]);
+			if (tri != NULL) {
+				FigList[i]->Save(outFile);
+			}
+		}
+	}
+		break;
+
+	default:
+		break;
+	}
+}
+void ApplicationManager::deleteAll() {
+	for (int i = 0; i<FigCount; i++)
+		delete FigList[i];
+	FigCount = 0;
+	pOut->ClearDrawArea();
 }

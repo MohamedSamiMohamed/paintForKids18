@@ -23,12 +23,13 @@ void LoadAction::Execute() {
 	ReadActionParameters();
 	inputString = inputString + ".txt";
 	ifstream myFile(inputString); //opens the file
-
+	
+	Output* pOut = pManager->GetOutput();
+	Input* pIn = pManager->GetInput();
 	if (myFile.is_open())
 	{
+		pManager->deleteAll();
 
-		int id;
-		
 		int type_int;
 		enum type
 		{
@@ -100,8 +101,6 @@ void LoadAction::Execute() {
 	}
 	else
 	{
-		Output* pOut = pManager->GetOutput();
-		Input* pIn = pManager->GetInput();
 		pOut->PrintMessage("Unable to open file");
 	}
 
