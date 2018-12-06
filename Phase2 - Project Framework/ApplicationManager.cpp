@@ -7,6 +7,7 @@
 #include "Actions\SaveAction.h"
 #include "Actions\LoadAction.h"
 #include "Actions/SaveByType.h"
+#include "Actions/SwitchToPlayMode.h"
 
 #include "Actions/SelectFig.h"
 
@@ -80,9 +81,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE_BY_TYPE:
 			pAct = new SaveByType(this);
 			break;
-
 		case LOAD:
 			pAct = new LoadAction(this);
+			break;
+
+		case TO_PLAY:
+			pAct = new SwitchToPlayMode(this);
+			break;
+
+		case SELECT_BY_TYPE:
+			
+			break;
+
+		case SELECT_BY_COLOUR:
 			break;
 
 		case EXIT:
