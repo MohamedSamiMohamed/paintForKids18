@@ -47,6 +47,7 @@ public:
 	void setselectedfig(CFigure* pFig); //M.a: Sets a figure to be selected
 	CFigure* Getselectedfigure() const; //M.a: Returns the current selected figure
 	void SetSelectedfigNULL(); //M.A: To set selcted figure to NULL
+
 };
 
 #endif

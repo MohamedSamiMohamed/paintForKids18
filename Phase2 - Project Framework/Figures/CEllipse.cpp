@@ -32,7 +32,7 @@ void CEllipse::PrintInfo(Output * pOut) const
 }
 
 void CEllipse::Save(ofstream &outFile) {
-	outFile << 3 << " " << ID << " " << Centre.x << " " << Centre.y << " ";
+	outFile << 1 << " " << ID << " " << Centre.x << " " << Centre.y << " ";
 	outFile << " " << (int)FigGfxInfo.FillClr.ucBlue << " " << (int)FigGfxInfo.FillClr.ucRed << " " << (int)FigGfxInfo.FillClr.ucGreen;
 	outFile << " " << (int)FigGfxInfo.DrawClr.ucBlue << " " << (int)FigGfxInfo.DrawClr.ucRed << " " << (int)FigGfxInfo.DrawClr.ucGreen;
 	outFile << " " << FigGfxInfo.isFilled << "\n";

@@ -19,9 +19,6 @@ void SwitchToPlayMode::ReadActionParameters() {
 void SwitchToPlayMode::Execute() {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
-
-	pOut->PrintMessage("Action: Switch to Play Mode, creating Design tool bar");
 	pOut->ClearToolBar();
 	pOut->CreatePlayToolBar();
 }

@@ -8,6 +8,7 @@
 #include "Actions\LoadAction.h"
 #include "Actions/SaveByType.h"
 #include "Actions/SwitchToPlayMode.h"
+#include "Actions/SelectByType.h"
 
 #include "Actions/SelectFig.h"
 
@@ -90,7 +91,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case SELECT_BY_TYPE:
-			
+			pAct = new SelectByType(this);
 			break;
 
 		case SELECT_BY_COLOUR:

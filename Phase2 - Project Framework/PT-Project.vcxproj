@@ -136,7 +136,9 @@
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SaveByType.cpp" />
+    <ClCompile Include="Actions\SelectByType.cpp" />
     <ClCompile Include="Actions\SelectFig.cpp" />
+    <ClCompile Include="Actions\SwitchToPlayMode.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -193,7 +195,9 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SaveByType.h" />
+    <ClInclude Include="Actions\SelectByType.h" />
     <ClInclude Include="Actions\SelectFig.h" />
+    <ClInclude Include="Actions\SwitchToPlayMode.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
