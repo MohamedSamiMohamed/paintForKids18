@@ -278,3 +278,80 @@ void ApplicationManager::deleteAll() {
 	FigCount = 0;
 	pOut->ClearDrawArea();
 }
+bool ApplicationManager::isEmpty() {
+	if (FigCount == 0) {
+		return true;
+	}
+	return false;
+}
+bool  ApplicationManager::isFound(ActionType A) {
+	switch (A)
+	{
+		case DRAW_RECT: {
+			CRectangle * rect;
+			for (int i = 0; i < FigCount; i++)
+			{
+				rect = dynamic_cast<CRectangle *> (FigList[i]);
+				if (rect != NULL) {
+					return true;
+				}
+			}
+			return false;
+		}
+			break;
+
+		case DRAW_LINE: {
+			CLine * line;
+			for (int i = 0; i < FigCount; i++)
+			{
+				line = dynamic_cast<CLine *> (FigList[i]);
+				if (line != NULL) {
+					return true;
+				}
+			}
+			return false;
+		}
+			break;
+
+		case DRAW_RHOMBUS:
+		{
+			CRhombos * rho;
+			for (int i = 0; i < FigCount; i++)
+			{
+				rho = dynamic_cast<CRhombos *> (FigList[i]);
+				if (rho != NULL) {
+					return true;
+				}
+			}
+			return false;
+		}
+			break;
+
+		case DRAW_ELLIPSE: {
+			CEllipse * ell;
+			for (int i = 0; i < FigCount; i++)
+			{
+				ell = dynamic_cast<CEllipse *> (FigList[i]);
+				if (ell != NULL) {
+					return true;
+				}
+			}
+			return false;
+		}
+			break;
+
+	case DRAW_TRI: {
+			CTriangle * tri;
+
+			for (int i = 0; i < FigCount; i++)
+			{
+				tri = dynamic_cast<CTriangle *> (FigList[i]);
+				if (tri != NULL) {
+					return true;
+				}
+			}
+			return false;
+		}
+			break;
+	}
+}

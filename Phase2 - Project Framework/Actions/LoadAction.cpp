@@ -16,8 +16,10 @@ LoadAction::LoadAction(ApplicationManager * pApp) :Action(pApp)
 void LoadAction::ReadActionParameters() {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	inputString = pIn->GetSrting(pOut);
+	pOut->PrintMessage("please enter the file name to be loaded");
 
+	inputString = pIn->GetSrting(pOut);
+	pOut->ClearStatusBar();
 }
 void LoadAction::Execute() {
 	ReadActionParameters();

@@ -43,6 +43,8 @@ public:
 	void SaveAll(ofstream &outFile);
 	void SaveByTypeFn(ofstream &outFile, ActionType A);
 	void deleteAll();
+	bool isEmpty();
+	bool isFound(ActionType);
 
 	void setselectedfig(CFigure* pFig); //M.a: Sets a figure to be selected
 	CFigure* Getselectedfigure() const; //M.a: Returns the current selected figure
