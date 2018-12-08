@@ -89,6 +89,8 @@ struct UI_Info	//User Interface Info.
 	color StatusBarColor;	//Status bar color
 	int PenWidth;			//width of the pen that draws shapes
 
+	bool FigsFilled;        //M.A:show the current state of all figures filled or not
+
 	/// Add more members if needed
 	
 }UI;	//create a global object UI

@@ -3,6 +3,8 @@
 
 CEllipse :: CEllipse(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
+	//Setting an ID for the figure
+	ID = IDSetter++;
 	Centre = P1;
 	
 }

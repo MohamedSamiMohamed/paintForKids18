@@ -2,6 +2,9 @@
 #include <fstream>
 CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
+	//Setting an ID for the figure
+	ID = IDSetter++;
+
 	Point1 = P1;
 	Point2 = P2;
 }

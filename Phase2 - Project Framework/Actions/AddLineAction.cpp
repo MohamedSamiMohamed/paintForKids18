@@ -25,7 +25,7 @@ void AddLineAction::ReadActionParameters()
 	//Read 2nd point and store in point P2
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	lineGfxInfo.isFilled = false;	//default is not filled
+	lineGfxInfo.isFilled = UI.FigsFilled;	//default is not filled till one figure becomes filled
 	//get drawing, filling colors and pen width from the interface
 	lineGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	lineGfxInfo.FillClr = pOut->getCrntFillColor();

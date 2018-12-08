@@ -22,7 +22,7 @@ void AddEllAction::ReadActionParameters()
 	pIn->GetPointClicked(P1.x, P1.y);
 
 
-	EllGfxInfo.isFilled = false;	//default is not filled
+	EllGfxInfo.isFilled = UI.FigsFilled;	//default is not filled till one figure becomes filled
 	//get drawing, filling colors and pen width from the interface
 	EllGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	EllGfxInfo.FillClr = pOut->getCrntFillColor();

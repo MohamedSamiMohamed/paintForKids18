@@ -11,6 +11,9 @@
 #include "Actions/SelectByType.h"
 
 #include "Actions/SelectFig.h"
+#include"Actions/ChangeDrawClr.h"
+#include"Actions/ChangeFillColour.h"
+#include"Actions/DeleteFig.h"
 
 #include "Figures/CRectangle.h"
 #include "Figures/CEllipse.h"
@@ -74,7 +77,22 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SELECT:
 			pAct = new SelectFig(this);
 			break;
+
+			//M.A: case for change draw colour
+		case CHNG_DRAW_CLR:
+			pAct = new ChangeDrawClr(this);
+			break;
 		
+			//M.A: case for changing the fill colour
+		case CHNG_FILL_CLR:
+			pAct = new ChangeFillColour(this);
+			break;
+
+			//M.A: case for delete figure
+		case DEL:
+			pAct = new DeleteFig(this);
+			break;
+
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
@@ -123,9 +141,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount)
 	{
-		//M.A : Add the id to the figure before adding
-		pFig->SetFigID(FigCount);
-
 		FigList[FigCount++] = pFig;
 	}
 }
@@ -170,9 +185,12 @@ Output *ApplicationManager::GetOutput() const
 {	return pOut; }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////
+//                              Select Action Functions                                   //
+////////////////////////////////////////////////////////////////////////////////////////////
+
 void ApplicationManager::setselectedfig(CFigure* pFig)
 {
-	//M.A : Still not sure ! Do we need dynamic allocation for selected fig 
 	//M.A : Fig can be changed from outside so i point to a an object that was already created
 	SelectedFig = pFig;  
 }
@@ -188,15 +206,11 @@ void ApplicationManager::SetSelectedfigNULL()
 	SelectedFig = NULL;
 }
 
-////////////////////////////////////////////////////////////////////////////////////
-//Destructor
-ApplicationManager::~ApplicationManager()
-{
-	deleteAll();
-	delete pIn;
-	delete pOut;
-	
-}
+////////////////////////////////////////////////////////////////////////////////////////////
+//                              Save/Load Action Functions                                //
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
 void ApplicationManager::SaveAll(ofstream &outFile) {
 
 	for (int i = 0; i < FigCount; i++) {
@@ -354,4 +368,46 @@ bool  ApplicationManager::isFound(ActionType A) {
 		}
 			break;
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//                              Delete Action Functions                                   //
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void ApplicationManager::DeleteFigure(CFigure* pFig)
+{
+	int i;
+	for (i = 0; i < FigCount; i++)
+	{
+		//searching for the selected figure
+		if (FigList[i] == pFig)
+		{
+			delete FigList[i];
+			//Set selected figure to NULL
+			SelectedFig = NULL;
+			break;
+		}
+
+	}
+	//Shift all pointers starting from i until the pointer before the last one 
+	for (int j = i; j < FigCount - 1; j++)
+	{
+		FigList[j] = FigList[j + 1];
+	}
+
+	//Decrement the actual number of figures by one
+	FigCount--;
+	FigList[FigCount] = NULL;
+	//Clear the draw area so that the deleted object disappears before updating interface
+	pOut->ClearDrawArea();
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+//Destructor
+ApplicationManager::~ApplicationManager()
+{
+	deleteAll();
+	delete pIn;
+	delete pOut;
+
 }

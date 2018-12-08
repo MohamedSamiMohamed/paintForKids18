@@ -22,8 +22,6 @@ void CFigure::ChngFillClr(color Fclr)
 }
 
 //M.A://///////////////////////
-void CFigure :: SetFigID(int id)
-{
-	ID = id;
-}
+int CFigure::IDSetter = 0; //initialization of IDSetter outside the class
+
 ///////////////////////////////

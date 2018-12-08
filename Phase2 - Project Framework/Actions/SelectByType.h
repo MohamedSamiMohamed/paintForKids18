@@ -1,7 +1,6 @@
 #pragma once
 #include "Action.h"
-class SelectByType :
-	public Action
+class SelectByType :public Action
 {
 public:
 	SelectByType(ApplicationManager * pApp);

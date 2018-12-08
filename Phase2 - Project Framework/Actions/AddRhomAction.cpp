@@ -21,7 +21,7 @@ void AddRhomAction::ReadActionParameters()
 	pIn->GetPointClicked(P1.x, P1.y);
 
 
-	RhomGfxInfo.isFilled = false;	//default is not filled
+	RhomGfxInfo.isFilled = UI.FigsFilled;	//default is not filled till one figure becomes filled
 	//get drawing, filling colors and pen width from the interface
 	RhomGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	RhomGfxInfo.FillClr = pOut->getCrntFillColor();

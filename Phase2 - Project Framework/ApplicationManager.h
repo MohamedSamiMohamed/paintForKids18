@@ -40,15 +40,21 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window
 
+	// -- Select Action Functions
+	void setselectedfig(CFigure* pFig); //M.a: Sets a figure to be selected
+	CFigure* Getselectedfigure() const; //M.a: Returns the current selected figure
+	void SetSelectedfigNULL(); //M.A: To set selcted figure to NULL
+
+	// -- Save/Load Action functions
 	void SaveAll(ofstream &outFile);
 	void SaveByTypeFn(ofstream &outFile, ActionType A);
 	void deleteAll();
 	bool isEmpty();
 	bool isFound(ActionType);
 
-	void setselectedfig(CFigure* pFig); //M.a: Sets a figure to be selected
-	CFigure* Getselectedfigure() const; //M.a: Returns the current selected figure
-	void SetSelectedfigNULL(); //M.A: To set selcted figure to NULL
+	// -- Delete Action Functions
+	void DeleteFigure(CFigure* pFig); //M.A: searches for the selected figure,Deletes it,then shifts the whole array and decreases fig count
+	
 
 };
 

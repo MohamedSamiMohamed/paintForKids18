@@ -23,6 +23,8 @@ Output::Output()
 	UI.StatusBarColor = TURQUOISE;
 	UI.PenWidth = 3;	//width of the figures frames
 
+	UI.FigsFilled = false; //Initial state of all figures not filled
+
 	
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
@@ -363,7 +365,7 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 		if (selected)
 			DrawingClr = UI.HighlightColor;
 		else
-			DrawingClr = UI.DrawColor;  //setting draw colour
+			DrawingClr = RhomGfxInfo.DrawClr;  //setting draw colour
 
 
 		if (P1.y < UI.ToolBarHeight + 50)
