@@ -6,6 +6,28 @@
 #include "GUI\input.h"
 #include "GUI\output.h"
 
+#include "ApplicationManager.h"
+#include "Actions\AddRectAction.h"
+#include "Actions\AddEllAction.h"
+#include "Actions\AddLineAction.h"
+#include "Actions\AddRhomAction.h"
+#include "Actions\AddTriAction.h"
+#include "Actions\SaveAction.h"
+#include "Actions\LoadAction.h"
+#include "Actions/SaveByType.h"
+#include "Actions/SwitchToPlayMode.h"
+#include "Actions/SelectByType.h"
+
+#include "Actions/SelectFig.h"
+#include"Actions/ChangeDrawClr.h"
+#include"Actions/ChangeFillColour.h"
+#include"Actions/DeleteFig.h"
+
+#include "Figures/CRectangle.h"
+#include "Figures/CEllipse.h"
+#include "Figures/CLine.h"
+#include "Figures/CRhombos.h"
+#include "Figures/CTriangle.h"
 //Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -54,7 +76,7 @@ public:
 
 	// -- Delete Action Functions
 	void DeleteFigure(CFigure* pFig); //M.A: searches for the selected figure,Deletes it,then shifts the whole array and decreases fig count
-	
+	int countSpecificFigures(ActionType);
 
 };
 
