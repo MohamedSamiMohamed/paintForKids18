@@ -11,6 +11,7 @@ CRhombos::CRhombos(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 
 void CRhombos::Draw(Output* pOut) const
 {
+	if (isDrawn)
 	//Call Output::DrawRhom to draw a rhombos on the screen	
 	pOut->DrawRhom(Centre, FigGfxInfo, Selected);
 }

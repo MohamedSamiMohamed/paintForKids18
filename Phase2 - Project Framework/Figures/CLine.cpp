@@ -12,6 +12,7 @@ CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 
 void CLine::Draw(Output* pOut) const
 {
+	if (isDrawn)
 	//Call Output::DrawLine to draw a line on the screen	
 	pOut->DrawLine(Point1, Point2, FigGfxInfo, Selected);
 }

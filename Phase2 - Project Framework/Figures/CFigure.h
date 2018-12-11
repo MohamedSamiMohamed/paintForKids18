@@ -14,6 +14,7 @@ protected:
 
 	static int IDSetter; //M.A:To set a unique ID to each Figure
 	
+	bool isDrawn;
 	/// Add more parameters if needed.
 
 public:

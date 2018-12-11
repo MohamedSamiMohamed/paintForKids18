@@ -4,6 +4,8 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
+
+	isDrawn = true;
 }
 
 void CFigure::SetSelected(bool s)
