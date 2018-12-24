@@ -5,6 +5,7 @@
 #include "..\GUI\Input.h"
 #include "..\GUI\Output.h"
 #include <iostream>
+#include <fstream>
 
 SwitchToPlayMode::SwitchToPlayMode(ApplicationManager * pApp) :Action(pApp)
 {}
@@ -17,8 +18,13 @@ void SwitchToPlayMode::ReadActionParameters() {
 }
 
 void SwitchToPlayMode::Execute() {
-	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
+	pOut->ClearStatusBar();
+	ofstream myfile;
+	myfile.open("temp.txt");
+	pManager->SaveAll(myfile);
+	myfile.close();
+	//Get a Pointer to the Input / Output Interfaces
 	pOut->ClearToolBar();
 	pOut->CreatePlayToolBar();
 }

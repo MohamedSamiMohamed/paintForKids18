@@ -7,7 +7,7 @@ class LoadAction:public Action
 	string inputString;
 public:
 	LoadAction(ApplicationManager * pApp);
-	void LoadAction::ReadActionParameters();
-	void LoadAction::Execute();
+	void ReadActionParameters();
+	void Execute();
 };
 

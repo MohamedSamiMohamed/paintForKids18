@@ -13,15 +13,26 @@
 
 LoadAction::LoadAction(ApplicationManager * pApp) :Action(pApp)
 {}
+
+
 void LoadAction::ReadActionParameters() {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+	if(UI.InterfaceMode==MODE_DRAW)
+	{
+	if(pManager->Replay=true)
+		inputString = "temp";
 	pOut->PrintMessage("please enter the file name to be loaded");
-
 	inputString = pIn->GetSrting(pOut);
 	pOut->ClearStatusBar();
+	}
+	else 
+		inputString = "temp";
 }
+
+
 void LoadAction::Execute() {
+	
 	ReadActionParameters();
 	inputString = inputString + ".txt";
 	ifstream myFile(inputString); //opens the file
@@ -107,3 +118,5 @@ void LoadAction::Execute() {
 	}
 
 }
+
+

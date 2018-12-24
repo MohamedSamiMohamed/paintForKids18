@@ -17,10 +17,10 @@ Output::Output()
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
-	UI.MsgColor = RED;		//Messages color
+	UI.MsgColor = BLACK;		//Messages color
 	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
-	UI.StatusBarColor = TURQUOISE;
+	UI.StatusBarColor = ROYALBLUE;
 	UI.PenWidth = 3;	//width of the figures frames
 
 	UI.FigsFilled = false; //Initial state of all figures not filled
@@ -138,7 +138,7 @@ void Output::CreateDrawToolBar() const
 
 
 	//Draw a line under the toolbar
-	pWind->SetPen(RED, 3);
+	pWind->SetPen(ROYALBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
 
 }
@@ -158,7 +158,7 @@ void Output::CreatePlayToolBar() const   //****MS****
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar	
-	pWind->SetPen(RED, 3);
+	pWind->SetPen(ROYALBLUE, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
 	
@@ -200,14 +200,6 @@ int Output::getCrntPenWidth() const		//get current pen width
 void Output::DrawEll(Point p1, GfxInfo EllGfxInfo, bool selected) const
 
 {
-    if (p1.y >UI.height - UI.StatusBarHeight)
-    {
-		Point PWait;
-		PrintMessage("Invalid !");
-		pWind->WaitMouseClick(PWait.x, PWait.y);
-		return;
-	}
-
 	if (p1.y + 40 >UI.height - UI.StatusBarHeight)
 	{
 		color DrawingClr;
@@ -232,13 +224,7 @@ void Output::DrawEll(Point p1, GfxInfo EllGfxInfo, bool selected) const
 	}
 
 	////////////
-	if (p1.y <UI.ToolBarHeight)
-	{
-		Point PWait;
-		PrintMessage("Invalid !");
-		pWind->WaitMouseClick(PWait.x, PWait.y);
-		return;
-	}
+	
 
 	if (p1.y - 40 <UI.ToolBarHeight)
 	{
@@ -317,14 +303,7 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 		P2.y -= P2.y - (UI.height - UI.StatusBarHeight) + 5;
 	}
 
-	else if ((P1.y<UI.ToolBarHeight&&P2.y<UI.ToolBarHeight) || (P1.y>UI.height - UI.StatusBarHeight&&P2.y>UI.height - UI.StatusBarHeight))    //****MS****  the 2 points will be check if they are
-
-																																			  // on the tool bar or on the status bar then it's invalid place for drawing 
-	{
-		PrintMessage("invalid place to draw the rectangule!,click anywhere to continue");
-		pWind->WaitMouseClick(Pwait.x, Pwait.y);
-		return;
-	}
+	
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -353,14 +332,6 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 																			   to drawpolygon function and 4 which is the number of vertices and the style
 																			   filled or nonfilled*/
 {
-	if (P1.y <= UI.ToolBarHeight || (P1.y > UI.height - UI.StatusBarHeight))
-	{
-		Point PWait;
-		PrintMessage("Invalid center !");
-		pWind->WaitMouseClick(PWait.x,PWait.y);
-	}
-	else
-	{
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor;
@@ -372,6 +343,12 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 		{
 			double AboveToolbar = 50 - (P1.y - UI.ToolBarHeight);
 			P1.y += AboveToolbar;
+		}
+
+		if (((UI.height - UI.StatusBarHeight) - P1.y) < 50)
+		{
+			double insideStatusBar = 50 - ((UI.height - UI.StatusBarHeight) - P1.y);
+			P1.y -= insideStatusBar;
 		}
 
 		int* px = new int[4];
@@ -403,24 +380,10 @@ void Output::DrawRhom(Point P1, GfxInfo RhomGfxInfo, bool selected) const      /
 
 		delete[]px;
 		delete[]py;
-	}
 }
 //==============================================================================================//
-void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) const {  //Draw a line
-	
-	if (P1.y <= UI.ToolBarHeight || P2.y <= UI.ToolBarHeight
-		|| (P1.y > UI.height - UI.StatusBarHeight) || (P2.y > UI.height - UI.StatusBarHeight))
-	{
-		PrintMessage("Invalid !");
-		pWind->GetMouseClick(P1.x, P1.y);
-		pWind->GetMouseClick(P2.x,P2.y);
-		
-		pWind->FlushMouseQueue();
-		
-		
-	}
-	else
-	{
+void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) const //Draw a line
+{  
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
@@ -431,26 +394,11 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo, bool selected ) c
 		drawstyle style;
 		style = FRAME;
 
-
-
-
-
 		pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
-	}
 }
 
 void Output::DrawTri(Point p1,Point p2,Point p3, GfxInfo TriGfxInfo, bool selected)const  //****MS*****
 {
-	if (p1.y <= UI.ToolBarHeight || p2.y <= UI.ToolBarHeight || p3.y <= UI.ToolBarHeight
-		|| (p1.y > UI.height - UI.StatusBarHeight) || (p2.y > UI.height - UI.StatusBarHeight)
-		|| (p3.y > UI.height - UI.StatusBarHeight))
-	{
-		Point PWait;
-		PrintMessage("Invalid !");
-		pWind->WaitMouseClick(PWait.x, PWait.y);
-	}
-	else
-	{
 		color DrawingClr;
 		if (selected)
 			DrawingClr = UI.HighlightColor;
@@ -466,7 +414,7 @@ void Output::DrawTri(Point p1,Point p2,Point p3, GfxInfo TriGfxInfo, bool select
 		else
 			style = FRAME;
 		pWind->DrawTriangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, style);
-	}
+	
 	}
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()

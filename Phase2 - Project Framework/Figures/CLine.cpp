@@ -5,6 +5,8 @@ CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 	//Setting an ID for the figure
 	ID = IDSetter++;
 
+	FigGfxInfo.FillClr = LIGHTGOLDENRODYELLOW; //M.A:Setting to any don't care color
+
 	Point1 = P1;
 	Point2 = P2;
 }
@@ -12,27 +14,19 @@ CLine::CLine(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 
 void CLine::Draw(Output* pOut) const
 {
-	if (isDrawn)
 	//Call Output::DrawLine to draw a line on the screen	
 	pOut->DrawLine(Point1, Point2, FigGfxInfo, Selected);
 }
 
 bool CLine::Isinsideboundaries(int x, int y) const
 {  
-	if ((x <= Point1.x && x >= Point2.x) || (x <= Point2.x && x >= Point1.x))
+	int Lenght1 = GetLineLenght(x, y, Point1.x, Point1.y);
+	int Lenght2 = GetLineLenght(x, y, Point2.x, Point2.y);
+	int Lenghttotal = GetLineLenght(Point2.x, Point2.y, Point1.x, Point1.y);
+
+	if (Lenghttotal <= Lenght1 + Lenght2 + 1 && Lenghttotal >= Lenght1 + Lenght2)
 	{
-		float slope = (Point2.y - Point1.y)*1.0 / (Point2.x - Point1.x);
-		float Y_intecept = Point1.y - slope * Point1.x;
-		//M.A : Right Hand Side of the line equation
-		int EqnRHS = y - slope * x - Y_intecept;
-		if (EqnRHS == 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return true;
 	}
 	else
 	{
@@ -75,4 +69,24 @@ void CLine::Load(ifstream &myFile) {
 	myFile >> IsFilled;
 	FigGfxInfo.isFilled = IsFilled;
 
+}
+
+//M.A : to check for invalid area of drawinh the line
+bool CLine::Isinvalid()
+{
+	if (Point1.y <= UI.ToolBarHeight || Point2.y <= UI.ToolBarHeight
+		|| (Point1.y > UI.height - UI.StatusBarHeight) || (Point2.y > UI.height - UI.StatusBarHeight))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+int CLine::GetLineLenght(int x1, int y1, int x2, int y2) const
+{
+	int lenght = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
+	return lenght;
 }

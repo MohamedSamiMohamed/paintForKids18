@@ -187,9 +187,6 @@
     <ClCompile Include="Actions\SwitchToPlayMode.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\SelectByType.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\ChangeDrawClr.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -197,6 +194,22 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\DeleteFig.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SwitchtoDraw.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ByType.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ByClr.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ReSize.cpp" />
+    <ClCompile Include="Actions\BringForward.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SendToBack.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -325,9 +338,6 @@
     <ClInclude Include="Actions\SwitchToPlayMode.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\SelectByType.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\ChangeDrawClr.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
@@ -335,6 +345,22 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\DeleteFig.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchtoDraw.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ByType.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ByClr.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ReSize.h" />
+    <ClInclude Include="Actions\BringForward.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SendToBack.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

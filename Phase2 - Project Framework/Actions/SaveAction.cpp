@@ -26,7 +26,7 @@ void SaveAction::Execute()
 	else {
 		ReadActionParameters();
 		ofstream myfile;
-		inputString = inputString + ".txt";
+		inputString =inputString + ".txt";
 		myfile.open(inputString);
 		pManager->SaveAll(myfile);
 		myfile.close();

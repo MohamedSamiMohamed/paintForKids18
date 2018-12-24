@@ -12,7 +12,6 @@ CEllipse :: CEllipse(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 
 void CEllipse::Draw(Output* pOut) const
 {
-	if(isDrawn)
 	//Call Output::DrawEll to draw a rectangle on the screen	
 	pOut->DrawEll(Centre, FigGfxInfo, Selected);
 }
@@ -60,4 +59,16 @@ void CEllipse::Load(ifstream &myFile) {
 	int IsFilled;
 	myFile >> IsFilled;
 	FigGfxInfo.isFilled = IsFilled;
+}
+
+bool CEllipse :: Isinvalid()
+{
+	if (Centre.y > UI.height - UI.StatusBarHeight || Centre.y < UI.ToolBarHeight)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

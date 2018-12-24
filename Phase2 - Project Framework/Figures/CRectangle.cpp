@@ -14,7 +14,6 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 
 void CRectangle::Draw(Output* pOut) const
 {
-	if (isDrawn)
 	//Call Output::DrawRect to draw a rectangle on the screen	
 	pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
 }
@@ -104,4 +103,19 @@ void CRectangle::Load(ifstream &myFile) {
 	FigGfxInfo.isFilled = IsFilled;
 }
 
+bool CRectangle::Isinvalid()
+{
+	if ((Corner1.y < UI.ToolBarHeight && Corner2.y < UI.ToolBarHeight) || (Corner1.y > UI.height - UI.StatusBarHeight&&Corner2.y > UI.height - UI.StatusBarHeight))    
+	{
+		return true;
+	}
+	else if((Corner1.y < UI.ToolBarHeight && Corner2.y > UI.height - UI.StatusBarHeight) || (Corner2.y < UI.ToolBarHeight && Corner1.y > UI.height - UI.StatusBarHeight))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 

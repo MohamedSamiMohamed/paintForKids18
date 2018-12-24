@@ -12,6 +12,9 @@ public:
 	virtual void Draw(Output* pOut) const;
 
 	virtual bool Isinsideboundaries(int x, int y) const;
+	
+	virtual bool Isinvalid();
+
 	virtual void PrintInfo(Output* pOut) const;
 	virtual void Save(ofstream &outFile);	//Save the figure parameters to the file
 	virtual void Load(ifstream &myFile);	//Load the figure parameters to the file

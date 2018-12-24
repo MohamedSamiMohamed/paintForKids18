@@ -11,7 +11,6 @@ CRhombos::CRhombos(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 
 void CRhombos::Draw(Output* pOut) const
 {
-	if (isDrawn)
 	//Call Output::DrawRhom to draw a rhombos on the screen	
 	pOut->DrawRhom(Centre, FigGfxInfo, Selected);
 }
@@ -59,4 +58,16 @@ void CRhombos::Load(ifstream &myFile) {
 	int IsFilled;
 	myFile >> IsFilled;
 	FigGfxInfo.isFilled = IsFilled;
+}
+
+bool CRhombos::Isinvalid()
+{
+	if (Centre.y <= UI.ToolBarHeight || (Centre.y > UI.height - UI.StatusBarHeight))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

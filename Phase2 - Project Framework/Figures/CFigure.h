@@ -14,7 +14,6 @@ protected:
 
 	static int IDSetter; //M.A:To set a unique ID to each Figure
 	
-	bool isDrawn;
 	/// Add more parameters if needed.
 
 public:
@@ -22,13 +21,15 @@ public:
 
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	
+	friend class ApplicationManager;
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 
 	virtual bool Isinsideboundaries(int x, int y) const = 0;    //M.A:To indentify if the point taken is inside the figure or not.
+
+	//M.A : To prevent drawing on toolbar
+	virtual bool Isinvalid() = 0;
 
 	virtual void Save(ofstream &outFile) = 0;	//Save the figure parameters to the file
 	virtual void Load(ifstream &infile) = 0;	//Load the figure parameters to the file

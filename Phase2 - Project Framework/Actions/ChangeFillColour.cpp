@@ -1,5 +1,6 @@
 #include "ChangeFillColour.h"
 #include"..\ApplicationManager.h"
+#include"..\Figures\CLine.h"
 
 
 
@@ -30,46 +31,54 @@ void ChangeFillColour::Execute()
 	}
 	else
 	{
-		//Switch to determine the required colour
-		switch (newClr)
+		//line has no fill colour
+		if (!(dynamic_cast<CLine*>(CrntSelectedFig)))
 		{
-		case RED_CLR:
-			CrntSelectedFig->ChngFillClr(RED);
-			UI.FillColor = RED;
-			pOut->PrintMessage("Fill Colour Changed to Red");
-			UI.FigsFilled = true;  //To make rest of figures filled with the ui current fill colour
-			break;
-		
-		case BLACK_CLR:
-			CrntSelectedFig->ChngFillClr(BLACK);
-			UI.FillColor = BLACK;
-			pOut->PrintMessage("Fill Colour Changed to Black");
-			UI.FigsFilled = true;
-			break;
-		
-		case GREEN_CLR:
-			CrntSelectedFig->ChngFillClr(GREEN);
-			UI.FillColor = GREEN;
-			pOut->PrintMessage("Fill Colour Changed to Green");
-			UI.FigsFilled = true;
-			break;
-		
-		case BLUE_CLR:
-			CrntSelectedFig->ChngFillClr(BLUE);
-			UI.FillColor = BLUE;
-			pOut->PrintMessage("Fill Colour Changed to Blue");
-			UI.FigsFilled = true;
-			break;
-		
-		case WHITE_CLR:
-			CrntSelectedFig->ChngFillClr(WHITE);
-			UI.FillColor = WHITE;
-			pOut->PrintMessage("Fill Colour Changed to White");
-			UI.FigsFilled = true;
-			break;
-		
-		default:
-			pOut->PrintMessage("Invalid Colour Selection");
+			//Switch to determine the required colour
+			switch (newClr)
+			{
+			case RED_CLR:
+				CrntSelectedFig->ChngFillClr(RED);
+				UI.FillColor = RED;
+				pOut->PrintMessage("Fill Colour Changed to Red");
+				UI.FigsFilled = true;  //To make rest of figures filled with the ui current fill colour
+				break;
+
+			case BLACK_CLR:
+				CrntSelectedFig->ChngFillClr(BLACK);
+				UI.FillColor = BLACK;
+				pOut->PrintMessage("Fill Colour Changed to Black");
+				UI.FigsFilled = true;
+				break;
+
+			case GREEN_CLR:
+				CrntSelectedFig->ChngFillClr(GREEN);
+				UI.FillColor = GREEN;
+				pOut->PrintMessage("Fill Colour Changed to Green");
+				UI.FigsFilled = true;
+				break;
+
+			case BLUE_CLR:
+				CrntSelectedFig->ChngFillClr(BLUE);
+				UI.FillColor = BLUE;
+				pOut->PrintMessage("Fill Colour Changed to Blue");
+				UI.FigsFilled = true;
+				break;
+
+			case WHITE_CLR:
+				CrntSelectedFig->ChngFillClr(WHITE);
+				UI.FillColor = WHITE;
+				pOut->PrintMessage("Fill Colour Changed to White");
+				UI.FigsFilled = true;
+				break;
+
+			default:
+				pOut->PrintMessage("Invalid Colour Selection");
+			}
+		}
+		else
+		{
+			pOut->PrintMessage("Line has no Fill Colour!");
 		}
 	}
 }

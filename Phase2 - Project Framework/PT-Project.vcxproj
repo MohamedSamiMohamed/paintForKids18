@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>PT Project</ProjectName>
     <ProjectGuid>{1AC3DDD7-FDDE-487E-A2A4-52A8FCF7BDB9}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -133,14 +133,19 @@
     <ClCompile Include="Actions\AddLineAction.cpp" />
     <ClCompile Include="Actions\AddRhomAction.cpp" />
     <ClCompile Include="Actions\AddTriAction.cpp" />
+    <ClCompile Include="Actions\BringForward.cpp" />
+    <ClCompile Include="Actions\ByClr.cpp" />
+    <ClCompile Include="Actions\ByType.cpp" />
     <ClCompile Include="Actions\ChangeDrawClr.cpp" />
     <ClCompile Include="Actions\ChangeFillColour.cpp" />
     <ClCompile Include="Actions\DeleteFig.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
+    <ClCompile Include="Actions\ReSize.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SaveByType.cpp" />
-    <ClCompile Include="Actions\SelectByType.cpp" />
     <ClCompile Include="Actions\SelectFig.cpp" />
+    <ClCompile Include="Actions\SendToBack.cpp" />
+    <ClCompile Include="Actions\SwitchtoDraw.cpp" />
     <ClCompile Include="Actions\SwitchToPlayMode.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -195,14 +200,19 @@
     <ClInclude Include="Actions\AddLineAction.h" />
     <ClInclude Include="Actions\AddRhomAction.h" />
     <ClInclude Include="Actions\AddTriAction.h" />
+    <ClInclude Include="Actions\BringForward.h" />
+    <ClInclude Include="Actions\ByClr.h" />
+    <ClInclude Include="Actions\ByType.h" />
     <ClInclude Include="Actions\ChangeDrawClr.h" />
     <ClInclude Include="Actions\ChangeFillColour.h" />
     <ClInclude Include="Actions\DeleteFig.h" />
     <ClInclude Include="Actions\LoadAction.h" />
+    <ClInclude Include="Actions\ReSize.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SaveByType.h" />
-    <ClInclude Include="Actions\SelectByType.h" />
     <ClInclude Include="Actions\SelectFig.h" />
+    <ClInclude Include="Actions\SendToBack.h" />
+    <ClInclude Include="Actions\SwitchtoDraw.h" />
     <ClInclude Include="Actions\SwitchToPlayMode.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />

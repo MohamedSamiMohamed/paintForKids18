@@ -17,6 +17,9 @@ public:
 	float GetTriArea(int x1, int y1, int x2, int y2, int x3, int y3) const;
 
 	virtual bool Isinsideboundaries(int x, int y) const;
+
+	virtual bool Isinvalid();
+
 	virtual void PrintInfo(Output* pOut) const;
 
 	virtual void Save(ofstream &outFile);	//Save the figure parameters to the file

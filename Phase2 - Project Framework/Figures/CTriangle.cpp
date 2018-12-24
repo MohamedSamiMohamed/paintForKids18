@@ -14,7 +14,6 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3, GfxInfo FigureGfxInfo):CFigure
 
 void CTriangle::Draw(Output* pOut) const
 {
-	if (isDrawn)
 	//Call Output::DrawTri to draw a rectangle on the screen	
 	pOut->DrawTri(Corner1, Corner2,Corner3, FigGfxInfo, Selected);
 }
@@ -34,7 +33,7 @@ bool CTriangle::Isinsideboundaries(int x, int y) const
 	int Area2 = GetTriArea(Corner1.x, Corner1.y, x, y, Corner3.x, Corner3.y);
 	int Area3 = GetTriArea(Corner1.x, Corner1.y, Corner2.x, Corner2.y, x, y);
 
-	if (Area1 + Area2 + Area3 == Areatotal)
+	if (Area1 + Area2 + Area3 <= Areatotal && Area1 + Area2 + Area3 + 1 >= Areatotal)
 		return true;
 	else
 		return false;
@@ -76,6 +75,20 @@ void CTriangle::Load(ifstream &myFile) {
 	int IsFilled;
 	myFile >> IsFilled;
 	FigGfxInfo.isFilled = IsFilled;
+}
+
+bool CTriangle :: Isinvalid()
+{
+	if (Corner1.y <= UI.ToolBarHeight || Corner2.y <= UI.ToolBarHeight || Corner3.y <= UI.ToolBarHeight
+		|| (Corner1.y > UI.height - UI.StatusBarHeight) || (Corner2.y > UI.height - UI.StatusBarHeight)
+		|| (Corner3.y > UI.height - UI.StatusBarHeight))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 
